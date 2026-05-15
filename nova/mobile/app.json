@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "NOVA Driver",
+    "slug": "nova-driver",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": { "backgroundColor": "#0f172a" },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "NOVA needs your location to share live bus position with passengers.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "NOVA needs your location while you are on a trip."
+      }
+    },
+    "android": {
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"]
+    },
+    "plugins": [
+      ["expo-location", { "locationAlwaysAndWhenInUsePermission": "Allow NOVA to use your location during trips." }]
+    ]
+  }
+}
