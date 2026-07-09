@@ -23,67 +23,34 @@ export default function Home() {
             live GPS updates every 10 seconds. Pick your route, find
             your bus, and stop guessing.
           </p>
-          <div className="hero-actions">
+          <div className="hero-actions" style={{ flexWrap: "wrap", gap: "12px" }}>
             <Link to="/routes" className="btn">Find my bus</Link>
-            <Link to="/all-buses" className="btn secondary">See all buses on map</Link>
+            <Link to="/nearby-buses" className="btn primary">Nearby Buses</Link>
+            <Link to="/all-buses" className="btn secondary">See all on map</Link>
           </div>
         </div>
 
-        <div className="hero-visual">
-          <div className="route-preview">
-            <div style={{ fontSize: 13, fontWeight: 600, color: "var(--ink-secondary)", marginBottom: 4 }}>
-              Sample Route
-            </div>
-            <div style={{ fontSize: 16, fontWeight: 700, fontFamily: "var(--font-display)", letterSpacing: "-0.3px" }}>
-              Jalandhar → Chandigarh
-            </div>
-            <div className="route-preview-line">
-              <div className="route-dot"></div>
-              <div className="route-line"></div>
-              <div className="route-dot end"></div>
-              <div className="route-stop-chip">Phagwara</div>
-              <div className="route-stop-chip">Ludhiana</div>
-            </div>
-            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, color: "var(--ink-muted)" }}>
-              <span>Jalandhar</span>
-              <span>Chandigarh</span>
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px", justifyContent: "center" }}>
+          <div className="info-chip" style={{ margin: 0 }}>
+            <div className="info-chip-icon teal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="16 12 12 8 8 12"/><line x1="12" y1="16" x2="12" y2="8"/></svg></div>
+            <div className="info-chip-text">
+              <strong>{routeCount}</strong>
+              <span>Routes across Punjab</span>
             </div>
           </div>
-          <div style={{
-            display: "flex", gap: 8, marginTop: 16, fontSize: 12, color: "var(--ink-muted)"
-          }}>
-            <span style={{
-              background: "var(--green-light)", color: "var(--green)",
-              padding: "4px 10px", borderRadius: 999, fontWeight: 600
-            }}>● 1 bus active</span>
-            <span style={{
-              background: "var(--bg)", padding: "4px 10px",
-              borderRadius: 999, fontWeight: 500
-            }}>4 stops</span>
+          <div className="info-chip" style={{ margin: 0 }}>
+            <div className="info-chip-icon coral"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div className="info-chip-text">
+              <strong>10s</strong>
+              <span>GPS update interval</span>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <div className="info-strip">
-        <div className="info-chip">
-          <div className="info-chip-icon teal">🛣️</div>
-          <div className="info-chip-text">
-            <strong>{routeCount}</strong>
-            <span>Routes across Punjab</span>
-          </div>
-        </div>
-        <div className="info-chip">
-          <div className="info-chip-icon coral">⚡</div>
-          <div className="info-chip-text">
-            <strong>10s</strong>
-            <span>GPS update interval</span>
-          </div>
-        </div>
-        <div className="info-chip">
-          <div className="info-chip-icon blue">🏛️</div>
-          <div className="info-chip-text">
-            <strong>3+1</strong>
-            <span>Bus operators supported</span>
+          <div className="info-chip" style={{ margin: 0 }}>
+            <div className="info-chip-icon blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+            <div className="info-chip-text">
+              <strong>3+1</strong>
+              <span>Bus operators supported</span>
+            </div>
           </div>
         </div>
       </div>

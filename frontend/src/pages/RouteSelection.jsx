@@ -37,7 +37,10 @@ export default function RouteSelection() {
             type="text"
             placeholder="Search by city or stop name..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {
+              const sanitized = e.target.value.replace(/[^a-zA-Z0-9\s-]/g, "");
+              setSearch(sanitized);
+            }}
           />
         </div>
 

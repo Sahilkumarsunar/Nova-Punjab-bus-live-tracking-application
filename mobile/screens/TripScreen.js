@@ -1,110 +1,443 @@
-import { useEffect, useRef, useState } from "react";
-import { View, Text, TouchableOpacity, Alert, ScrollView, StatusBar } from "react-native";
-import * as Location from "expo-location";
-import { startTrip, stopTrip, updateLocation } from "../services/api";
+import { useEffect, useState, useCallback, useMemo } from "react";
+import {
+  View, Text, TouchableOpacity, Alert,
+  ScrollView, StatusBar, BackHandler,
+} from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
+import { io } from "socket.io-client";
+import * as tripService from "../services/tripService";
 import s, { COLORS } from "../components/styles";
+import {
+  API_URL,
+  getMyBus,
+  getPickupRequests,
+  updatePickupRequestStatus,
+  updateTripSettings
+} from "../services/api";
 
 export default function TripScreen({ route, navigation }) {
   const { busId } = route.params;
-  const [running, setRunning] = useState(false);
-  const [coords, setCoords] = useState(null);
-  const [lastSent, setLastSent] = useState(null);
-  const [sendCount, setSendCount] = useState(0);
-  const intervalRef = useRef(null);
+  const [trip, setTrip] = useState(tripService.getState());
+  const [bus, setBus] = useState(null);
 
-  useEffect(() => () => intervalRef.current && clearInterval(intervalRef.current), []);
+  // Smart Capacity & Request States
+  const [isFull, setIsFull] = useState(false);
+  const [acceptingRequests, setAcceptingRequests] = useState(true);
+  const [occupancy, setOccupancy] = useState(0);
+  const [requests, setRequests] = useState([]);
+  const [selectedStopName, setSelectedStopName] = useState(null);
 
-  const sendOnce = async () => {
+  // Subscribe to global trip state
+  useEffect(() => {
+    const unsub = tripService.subscribe(setTrip);
+    return unsub;
+  }, []);
+
+  // Hide back button in header and disable gestures when trip is running
+  useEffect(() => {
+    navigation.setOptions({
+      headerBackVisible: !trip.running,
+      gestureEnabled: !trip.running,
+    });
+  }, [navigation, trip.running]);
+
+  // Intercept all forms of navigation/back actions while trip is active
+  useEffect(() => {
+    const unsub = navigation.addListener("beforeRemove", (e) => {
+      if (trip.running) {
+        e.preventDefault();
+        Alert.alert(
+          "Trip is active",
+          "Please stop the trip before leaving this screen."
+        );
+      }
+    });
+    return unsub;
+  }, [navigation, trip.running]);
+
+  // Intercept Android hardware back while trip is active
+  useFocusEffect(
+    useCallback(() => {
+      const onBack = () => {
+        if (tripService.getState().running) {
+          Alert.alert(
+            "Trip is active",
+            "Please stop the trip before leaving this screen."
+          );
+          return true; // prevent default back action
+        }
+        return false;
+      };
+      const sub = BackHandler.addEventListener("hardwareBackPress", onBack);
+      return () => sub.remove();
+    }, [navigation])
+  );
+
+  // Fetch initial bus details and requests
+  const loadBusAndRequests = useCallback(async () => {
     try {
-      const pos = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High });
-      const { latitude, longitude } = pos.coords;
-      setCoords({ latitude, longitude });
-      await updateLocation(busId, latitude, longitude);
-      setLastSent(new Date());
-      setSendCount((c) => c + 1);
-    } catch (e) { console.warn(e.message); }
-  };
+      const b = await getMyBus();
+      setBus(b);
+      if (b) {
+        setIsFull(b.isFull || false);
+        setAcceptingRequests(b.acceptingRequests !== false);
+        setOccupancy(b.occupancy || 0);
+      }
 
-  const onStart = async () => {
-    const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== "granted") return Alert.alert("Permission required", "Location permission is needed.");
-    try {
-      await startTrip(busId);
-      setRunning(true);
-      setSendCount(0);
-      await sendOnce();
-      intervalRef.current = setInterval(sendOnce, 10000);
+      const reqs = await getPickupRequests(busId);
+      setRequests(reqs);
     } catch (e) {
-      Alert.alert("Failed to start", e.response?.data?.message || e.message);
+      console.warn("[NOVA] Failed to load data", e.message);
+    }
+  }, [busId]);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadBusAndRequests();
+    }, [loadBusAndRequests])
+  );
+
+  // Real-time socket sync
+  useEffect(() => {
+    const socketUrl = API_URL.replace("/api", "");
+    const socket = io(socketUrl);
+
+    socket.on("pickupRequestUpdate", (data) => {
+      if (data.busId === busId) {
+        // Reload all requests
+        getPickupRequests(busId).then(setRequests).catch(console.error);
+      }
+    });
+
+    socket.on("busLocationUpdate", (updatedBus) => {
+      if (updatedBus._id === busId) {
+        setIsFull(updatedBus.isFull || false);
+        setAcceptingRequests(updatedBus.acceptingRequests !== false);
+        setOccupancy(updatedBus.occupancy || 0);
+      }
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [busId]);
+
+  // Capacity modifications
+  const toggleFull = async () => {
+    try {
+      const nextFull = !isFull;
+      const updated = await updateTripSettings(busId, {
+        isFull: nextFull,
+        acceptingRequests: !nextFull
+      });
+      setIsFull(updated.isFull);
+      setAcceptingRequests(updated.acceptingRequests);
+    } catch (err) {
+      Alert.alert("Error", "Failed to update bus capacity status");
     }
   };
 
-  const onStop = async () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    intervalRef.current = null;
+  // Request updates
+  const handleUpdateStatus = async (requestId, status) => {
     try {
-      await stopTrip(busId);
-      setRunning(false);
+      await updatePickupRequestStatus(busId, requestId, status);
+      const reqs = await getPickupRequests(busId);
+      setRequests(reqs);
+    } catch (err) {
+      Alert.alert("Error", "Failed to update request status");
+    }
+  };
+
+  // Route stops extraction
+  const routeWaypoints = useMemo(() => {
+    if (!bus || !bus.routeId) return [];
+    const r = bus.routeId;
+    const points = [];
+    points.push(r.source);
+    if (r.stops) {
+      for (const s of r.stops) {
+        points.push(s);
+      }
+    }
+    points.push(r.destination);
+    return points;
+  }, [bus]);
+
+  // Request grouping by stop
+  const requestsByStop = useMemo(() => {
+    const map = {};
+    for (const req of requests) {
+      if (["sent", "accepted", "approaching", "arrived"].includes(req.status)) {
+        if (!map[req.stopName]) map[req.stopName] = [];
+        map[req.stopName].push(req);
+      }
+    }
+    return map;
+  }, [requests]);
+
+  // Total active request counts
+  const totalActiveRequests = useMemo(() => {
+    return requests.filter(r => ["sent", "accepted", "approaching", "arrived"].includes(r.status)).length;
+  }, [requests]);
+
+  const onStart = async () => {
+    try {
+      await tripService.startTrip(busId);
     } catch (e) {
-      Alert.alert("Failed to stop", e.response?.data?.message || e.message);
+      Alert.alert("Failed to start trip", e.message);
+    }
+  };
+
+  const onStop = () => {
+    Alert.alert(
+      "Stop trip?",
+      "This will end the trip and stop location sharing.",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Stop trip",
+          style: "destructive",
+          onPress: () => tripService.stopTrip(),
+        },
+      ]
+    );
+  };
+
+  const goToDashboard = () => {
+    if (trip.running) {
+      Alert.alert(
+        "Trip is still running",
+        "Your trip will continue in the background. Go to dashboard?",
+        [
+          { text: "Stay here", style: "cancel" },
+          { text: "Go to dashboard", onPress: () => navigation.navigate("Dashboard") },
+        ]
+      );
+    } else {
+      navigation.navigate("Dashboard");
     }
   };
 
   return (
-    <ScrollView contentContainerStyle={s.screen}>
+    <View style={{ flex: 1, backgroundColor: COLORS.bg }}>
+      <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 60 }}>
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
 
       <Text style={[s.title, { textAlign: "center" }]}>
-        {running ? "Trip in progress" : "Trip stopped"}
+        {trip.running ? "Trip in progress" : "Trip stopped"}
       </Text>
       <Text style={[s.muted, { textAlign: "center", marginBottom: 20 }]}>
-        {running ? "Location is shared every 10 seconds" : "Start your trip to begin sharing location"}
+        {trip.running
+          ? "Location shared every 10 s — works in background & when screen is off"
+          : "Start your trip to begin sharing location"}
       </Text>
 
+      {/* ── Status and Stats Counters ── */}
       <View style={{ flexDirection: "row", gap: 10, marginBottom: 14 }}>
-        <View style={[s.card, { flex: 1, alignItems: "center", marginBottom: 0 }]}>
-          <Text style={s.statValue}>{sendCount}</Text>
-          <Text style={s.statLabel}>Updates sent</Text>
+        <View style={[s.card, { flex: 1, alignItems: "center", marginBottom: 0, padding: 16 }]}>
+          <Text style={[s.statValue, { fontSize: 28 }]}>{trip.sendCount}</Text>
+          <Text style={[s.statLabel, { fontSize: 11 }]}>Pings sent</Text>
         </View>
-        <View style={[s.card, { flex: 1, alignItems: "center", marginBottom: 0 }]}>
-          <View style={[
-            s.badge,
-            { backgroundColor: running ? COLORS.greenLight : COLORS.redLight, marginBottom: 4 }
-          ]}>
-            <Text style={[
-              s.badgeText,
-              { color: running ? COLORS.green : COLORS.red }
-            ]}>
-              {running ? "Active" : "Offline"}
+        <View style={[s.card, { flex: 1, alignItems: "center", marginBottom: 0, padding: 16 }]}>
+          <Text style={[s.statValue, { fontSize: 28, color: COLORS.coral }]}>{totalActiveRequests}</Text>
+          <Text style={[s.statLabel, { fontSize: 11 }]}>Requests</Text>
+        </View>
+        <View style={[s.card, { flex: 1, alignItems: "center", marginBottom: 0, padding: 16 }]}>
+          <View
+            style={[
+              s.badge,
+              {
+                backgroundColor: trip.running ? COLORS.greenLight : COLORS.redLight,
+                marginBottom: 4,
+                paddingHorizontal: 8,
+                paddingVertical: 4,
+              },
+            ]}
+          >
+            <Text
+              style={[
+                s.badgeText,
+                { color: trip.running ? COLORS.green : COLORS.red, fontSize: 10 },
+              ]}
+            >
+              {trip.running ? "Active" : "Offline"}
             </Text>
           </View>
-          <Text style={s.statLabel}>Status</Text>
+          <Text style={[s.statLabel, { fontSize: 11 }]}>Status</Text>
         </View>
       </View>
 
-      <View style={s.card}>
-        <Text style={s.cardHeader}>Current location</Text>
-        {coords ? (
-          <>
-            <Text style={{ color: COLORS.inkSecondary, fontSize: 14, marginBottom: 4 }}>
-              Lat: {coords.latitude.toFixed(5)}
+      {/* ── Bus Capacity Management Card ── */}
+      {trip.running && (
+        <View style={s.card}>
+          <Text style={s.cardHeader}>Capacity Management</Text>
+          <TouchableOpacity
+            style={{
+              backgroundColor: isFull ? COLORS.coral : COLORS.green,
+              padding: 18,
+              borderRadius: 16,
+              alignItems: "center",
+              justifyContent: "center",
+              shadowColor: isFull ? COLORS.coral : COLORS.green,
+              shadowOffset: { width: 0, height: 6 },
+              shadowOpacity: 0.2,
+              shadowRadius: 10,
+              elevation: 4,
+              marginTop: 4,
+            }}
+            onPress={toggleFull}
+            activeOpacity={0.7}
+          >
+            <Text style={{ color: "#fff", fontWeight: "800", fontSize: 15, letterSpacing: 0.5 }}>
+              {isFull ? "BUS IS FULL (REQUESTS PAUSED)" : "MARK BUS AS FULL"}
             </Text>
-            <Text style={{ color: COLORS.inkSecondary, fontSize: 14 }}>
-              Lng: {coords.longitude.toFixed(5)}
-            </Text>
-          </>
-        ) : (
-          <Text style={s.muted}>Waiting for location data…</Text>
-        )}
-        {lastSent && (
-          <>
-            <View style={s.divider} />
-            <Text style={s.muted}>Last sent: {lastSent.toLocaleTimeString()}</Text>
-          </>
-        )}
-      </View>
+          </TouchableOpacity>
+        </View>
+      )}
 
-      {!running ? (
+      {/* ── Active Route Map representation & Pickup Requests ── */}
+      {trip.running && routeWaypoints.length > 0 && (
+        <View style={s.card}>
+          <Text style={s.cardHeader}>Interactive Route Stop Progress</Text>
+          <Text style={[s.muted, { marginBottom: 16, fontSize: 13 }]}>
+            Stops with active pickup requests are highlighted in orange. Tap a stop to view details and accept/reject requests.
+          </Text>
+
+          <View style={{ paddingLeft: 20, borderLeftWidth: 3, borderLeftColor: COLORS.border, marginLeft: 10, marginVertical: 10 }}>
+            {routeWaypoints.map((stopName, idx) => {
+              const activeReqs = requestsByStop[stopName] || [];
+              const count = activeReqs.length;
+              const isSelected = selectedStopName === stopName;
+              return (
+                <View key={`stop-wrapper-${idx}`} style={{ marginBottom: 16 }}>
+                  <TouchableOpacity
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      position: "relative",
+                    }}
+                    onPress={() => setSelectedStopName(isSelected ? null : stopName)}
+                    activeOpacity={0.7}
+                  >
+                    {/* Visual Node Dot on vertical line */}
+                    <View
+                      style={{
+                        position: "absolute",
+                        left: -27,
+                        width: 14,
+                        height: 14,
+                        borderRadius: 7,
+                        backgroundColor: count > 0 ? COLORS.coral : COLORS.violet,
+                        borderWidth: 3,
+                        borderColor: "#fff",
+                        shadowColor: count > 0 ? COLORS.coral : COLORS.violet,
+                        shadowOffset: { width: 0, height: 0 },
+                        shadowOpacity: 0.8,
+                        shadowRadius: 4,
+                        elevation: 4,
+                      }}
+                    />
+                    {/* Stop Information */}
+                    <View style={{ flex: 1, paddingLeft: 10 }}>
+                      <Text style={{ fontSize: 16, fontWeight: "700", color: count > 0 ? COLORS.coral : COLORS.ink }}>
+                        {stopName}
+                      </Text>
+                      {count > 0 && (
+                        <Text style={{ fontSize: 12, color: COLORS.coral, fontWeight: "600", marginTop: 2 }}>
+                          {count} passenger{count > 1 ? "s" : ""} waiting
+                        </Text>
+                      )}
+                    </View>
+                    {/* Badge */}
+                    {count > 0 && (
+                      <View style={[s.badge, { backgroundColor: COLORS.redLight }]}>
+                        <Text style={[s.badgeText, { color: COLORS.coral, fontSize: 10 }]}>
+                          {count} Waiting
+                        </Text>
+                      </View>
+                    )}
+                  </TouchableOpacity>
+
+                  {/* Render Stop-Specific Passenger Requests */}
+                  {isSelected && (
+                    <View style={{ marginTop: 12, paddingLeft: 10, borderLeftWidth: 2, borderLeftColor: COLORS.borderStrong, marginLeft: 5 }}>
+                      {count === 0 ? (
+                        <Text style={{ color: COLORS.inkMuted, fontSize: 13, fontStyle: "italic" }}>
+                          No active requests at this stop.
+                        </Text>
+                      ) : (
+                        activeReqs.map((req, reqIdx) => (
+                          <View key={`req-${reqIdx}`} style={{ paddingVertical: 10, borderTopWidth: reqIdx > 0 ? 1 : 0, borderTopColor: COLORS.border }}>
+                            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                              <Text style={{ fontSize: 13, fontWeight: "700", color: COLORS.inkSecondary }}>
+                                Passenger #{req.passengerId.slice(-4).toUpperCase()}
+                              </Text>
+                              <View style={[s.badge, { backgroundColor: COLORS.blueLight, paddingHorizontal: 8, paddingVertical: 3 }]}>
+                                <Text style={[s.badgeText, { color: COLORS.violet, fontSize: 9 }]}>
+                                  {req.status.toUpperCase()}
+                                </Text>
+                              </View>
+                            </View>
+
+                            <View style={{ flexDirection: "row", gap: 8, flexWrap: "wrap", marginTop: 4 }}>
+                              {req.status === "sent" && (
+                                <>
+                                  <TouchableOpacity
+                                    style={{ backgroundColor: COLORS.green, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 6 }}
+                                    onPress={() => handleUpdateStatus(req._id, "accepted")}
+                                  >
+                                    <Text style={{ color: "#fff", fontWeight: "700", fontSize: 11 }}>Accept</Text>
+                                  </TouchableOpacity>
+                                  <TouchableOpacity
+                                    style={{ backgroundColor: COLORS.coral, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 6 }}
+                                    onPress={() => handleUpdateStatus(req._id, "rejected")}
+                                  >
+                                    <Text style={{ color: "#fff", fontWeight: "700", fontSize: 11 }}>Reject</Text>
+                                  </TouchableOpacity>
+                                </>
+                              )}
+
+                              {req.status === "accepted" && (
+                                <TouchableOpacity
+                                  style={{ backgroundColor: COLORS.amber, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 6 }}
+                                  onPress={() => handleUpdateStatus(req._id, "approaching")}
+                                >
+                                  <Text style={{ color: "#fff", fontWeight: "700", fontSize: 11 }}>Mark Approaching</Text>
+                                </TouchableOpacity>
+                              )}
+
+                              {req.status === "approaching" && (
+                                <TouchableOpacity
+                                  style={{ backgroundColor: COLORS.green, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 6 }}
+                                  onPress={() => handleUpdateStatus(req._id, "arrived")}
+                                >
+                                  <Text style={{ color: "#fff", fontWeight: "700", fontSize: 11 }}>Mark Arrived</Text>
+                                </TouchableOpacity>
+                              )}
+
+                              {req.status === "arrived" && (
+                                <TouchableOpacity
+                                  style={{ backgroundColor: COLORS.violet, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 6 }}
+                                  onPress={() => handleUpdateStatus(req._id, "completed")}
+                                >
+                                  <Text style={{ color: "#fff", fontWeight: "700", fontSize: 11 }}>Pickup Completed</Text>
+                                </TouchableOpacity>
+                              )}
+                            </View>
+                          </View>
+                        ))
+                      )}
+                    </View>
+                  )}
+                </View>
+              );
+            })}
+          </View>
+        </View>
+      )}
+
+      {/* ── Start / Stop controls ── */}
+      {!trip.running ? (
         <TouchableOpacity
           style={[s.btn, { backgroundColor: COLORS.green }]}
           onPress={onStart}
@@ -113,18 +446,39 @@ export default function TripScreen({ route, navigation }) {
           <Text style={s.btnText}>Start trip</Text>
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity style={[s.btn, s.btnDanger]} onPress={onStop} activeOpacity={0.7}>
+        <TouchableOpacity
+          style={[s.btn, s.btnDanger]}
+          onPress={onStop}
+          activeOpacity={0.7}
+        >
           <Text style={s.btnText}>Stop trip</Text>
         </TouchableOpacity>
       )}
 
       <TouchableOpacity
-        style={[s.btn, s.btnSecondary]}
-        onPress={() => navigation.navigate("Dashboard")}
+        style={[
+          s.btn,
+          s.btnSecondary,
+          trip.running && { opacity: 0.35 },
+        ]}
+        onPress={goToDashboard}
+        disabled={trip.running}
         activeOpacity={0.7}
       >
         <Text style={s.btnTextSecondary}>← Back to dashboard</Text>
       </TouchableOpacity>
-    </ScrollView>
+
+      {trip.running && (
+        <Text
+          style={[
+            s.muted,
+            { textAlign: "center", marginTop: 8, fontSize: 12 },
+          ]}
+        >
+          Stop the trip first to go back to dashboard.
+        </Text>
+      )}
+      </ScrollView>
+    </View>
   );
 }

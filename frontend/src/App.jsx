@@ -6,6 +6,7 @@ import BusListing from "./pages/BusListing.jsx";
 import BusDetails from "./pages/BusDetails.jsx";
 import LiveTracking from "./pages/LiveTracking.jsx";
 import AllBusesMap from "./pages/AllBusesMap.jsx";
+import NearbyBuses from "./pages/NearbyBuses.jsx";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/buses/:busId" element={<BusDetails />} />
           <Route path="/buses/:busId/track" element={<LiveTracking />} />
           <Route path="/all-buses" element={<AllBusesMap />} />
+          <Route path="/nearby-buses" element={<NearbyBuses />} />
         </Routes>
       </div>
     </>

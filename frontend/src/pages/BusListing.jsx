@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getBusesByRoute } from "../services/api";
+import { getAvailabilityStatus } from "../services/utils";
+import AvailabilityBadge from "../components/AvailabilityBadge";
+import { io } from "socket.io-client";
+
+const SOCKET_URL = import.meta.env.VITE_API_URL
+  ? import.meta.env.VITE_API_URL.replace("/api", "")
+  : "http://localhost:5000";
+const socket = io(SOCKET_URL);
 
 export default function BusListing() {
   const { routeId } = useParams();
@@ -8,29 +16,51 @@ export default function BusListing() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let cancelled = false;
-    const load = () => getBusesByRoute(routeId).then((d) => !cancelled && setBuses(d)).catch(console.error);
-    load();
-    const t = setInterval(load, 10000);
-    return () => { cancelled = true; clearInterval(t); };
+    getBusesByRoute(routeId).then((d) => setBuses(d)).catch(console.error);
+
+    const handleLocationUpdate = (updatedBus) => {
+      setBuses((prev) => {
+        const idx = prev.findIndex((b) => b._id === updatedBus._id);
+        if (idx === -1) return prev;
+        const next = [...prev];
+        next[idx] = {
+          ...next[idx],
+          currentLocation:    updatedBus.currentLocation,
+          tripStarted:        updatedBus.tripStarted,
+          availabilityStatus: updatedBus.availabilityStatus, // from backend computeStatus
+        };
+        return next;
+      });
+    };
+
+    socket.on("busLocationUpdate", handleLocationUpdate);
+    return () => socket.off("busLocationUpdate", handleLocationUpdate);
   }, [routeId]);
 
-  const activeCount = buses.filter((b) => b.status === "active").length;
+  // Annotate each bus with a client-computed availability status
+  const annotated = buses.map((b) => ({
+    ...b,
+    _avail: b.availabilityStatus ?? getAvailabilityStatus(b),
+  }));
+
+  const runningCount  = annotated.filter((b) => b._avail === "running").length;
+  const offlineCount  = annotated.filter((b) => b._avail === "offline").length;
+  const inactiveCount = annotated.filter((b) => b._avail === "inactive").length;
 
   return (
     <>
-      <div style={{ marginBottom: 20, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+      <div style={{ marginBottom: 20, display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 12 }}>
         <div>
-          <h1>Buses on route</h1>
+          <h1>Buses on Route</h1>
           {buses.length > 0 && (
             <p className="muted">
-              {activeCount} active, {buses.length - activeCount} offline — updates every 10s
+              {runningCount} running · {offlineCount} offline today · {inactiveCount} inactive today — live updates
             </p>
           )}
         </div>
-        {activeCount > 0 && (
+        {runningCount > 0 && (
           <div className="live-indicator" style={{ marginTop: 6 }}>
-            <div className="live-dot"></div>
+            <div className="live-dot" />
             Live
           </div>
         )}
@@ -46,32 +76,57 @@ export default function BusListing() {
         </div>
       )}
 
-      {buses.map((b) => (
-        <div key={b._id} className="bus-item" onClick={() => navigate(`/buses/${b._id}`)}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <div style={{
-                width: 40, height: 40, borderRadius: 10,
-                background: b.busType === "government" ? "var(--blue-light)" : "var(--amber-light)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 18, flexShrink: 0
-              }}>
-                {b.busType === "government" ? "🏛️" : "🚐"}
-              </div>
-              <div>
-                <strong style={{ fontFamily: "var(--font-display)", fontSize: 15 }}>{b.busNumber}</strong>
-                <span className="muted" style={{ marginLeft: 8 }}>{b.busBrand}</span>
-                <div className="muted" style={{ marginTop: 2 }}>
-                  Driver: {b.driverId?.name || "—"}
+      {annotated.map((b) => {
+        const isInactive = b._avail === "inactive";
+        const isRunning = b._avail === "running";
+        return (
+          <div
+            key={b._id}
+            className={`bus-item${isInactive ? " bus-inactive" : ""}${isRunning ? " bus-running" : ""}`}
+            onClick={() => !isInactive && navigate(`/buses/${b._id}`)}
+            title={isInactive ? "This bus has not operated today" : undefined}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                {/* Bus type icon */}
+                <div style={{
+                  width: 40, height: 40, borderRadius: 10,
+                  background: b.busType === "government"
+                    ? "rgba(123,44,191,0.1)"
+                    : "rgba(255,94,0,0.1)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 18, flexShrink: 0,
+                  filter: isInactive ? "grayscale(1)" : "none",
+                }}>
+                  {b.busType === "government" ? "🏛️" : "🚐"}
+                </div>
+
+                <div>
+                  <span style={{
+                    fontSize: 13, fontWeight: 800,
+                    background: isRunning ? "rgba(16,185,129,.15)" : "rgba(123,44,191,.1)",
+                    color: isRunning ? "#059669" : "var(--violet)",
+                    padding: "3px 8px", borderRadius: 6, fontFamily: "var(--font-display)",
+                    marginRight: 8, display: "inline-block"
+                  }}>
+                    {b.busNumber}
+                  </span>
+                  <span className="muted">{b.busBrand}</span>
+                  <div className="muted" style={{ marginTop: 2 }}>
+                    Driver: {b.driverId?.name || "—"}
+                  </div>
                 </div>
               </div>
+
+              {/* Availability status */}
+              {isInactive
+                ? <span className="inactive-ribbon">Not Running Today</span>
+                : <AvailabilityBadge status={b._avail} />
+              }
             </div>
-            <span className={`badge ${b.status === "active" ? "active" : "offline"}`}>
-              {b.status}
-            </span>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </>
   );
 }

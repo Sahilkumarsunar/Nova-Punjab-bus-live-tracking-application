@@ -11,10 +11,22 @@ export default function LoginScreen({ navigation }) {
   const [busy, setBusy] = useState(false);
 
   const onLogin = async () => {
-    if (!phone || !password) return Alert.alert("Enter phone and password");
+    if (!phone || !password) {
+      return Alert.alert("Validation Error", "Please enter phone and password");
+    }
+
+    const trimmedPhone = phone.trim();
+    if (!/^[6-9]\d{9}$/.test(trimmedPhone)) {
+      return Alert.alert("Validation Error", "Please enter a valid 10-digit mobile number");
+    }
+
+    if (password.length < 6) {
+      return Alert.alert("Validation Error", "Password must be at least 6 characters");
+    }
+
     setBusy(true);
     try {
-      const { token, driver } = await login({ phone, password });
+      const { token, driver } = await login({ phone: trimmedPhone, password });
       await AsyncStorage.setItem("token", token);
       await AsyncStorage.setItem("driver", JSON.stringify(driver));
       navigation.replace("Dashboard");

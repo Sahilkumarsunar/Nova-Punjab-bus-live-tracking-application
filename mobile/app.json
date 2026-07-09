@@ -9,15 +9,30 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
+        "UIBackgroundModes": ["location", "fetch"],
         "NSLocationWhenInUseUsageDescription": "NOVA needs your location to share live bus position with passengers.",
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "NOVA needs your location while you are on a trip."
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "NOVA needs your location in the background so passengers can track the bus even when you lock your screen.",
+        "NSLocationAlwaysUsageDescription": "NOVA needs always-on location access during trips."
       }
     },
     "android": {
-      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"]
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "FOREGROUND_SERVICE",
+        "FOREGROUND_SERVICE_LOCATION"
+      ]
     },
     "plugins": [
-      ["expo-location", { "locationAlwaysAndWhenInUsePermission": "Allow NOVA to use your location during trips." }]
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow NOVA to use your location during trips.",
+          "isAndroidBackgroundLocationEnabled": true,
+          "isAndroidForegroundServiceEnabled": true
+        }
+      ]
     ]
   }
 }

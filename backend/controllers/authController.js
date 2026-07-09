@@ -8,19 +8,46 @@ function sign(id) {
 
 exports.register = async (req, res) => {
   try {
-    const { name, phone, password } = req.body;
-    if (!name || !phone || !password)
-      return res.status(400).json({ message: "name, phone, password are required" });
+    const { name, phone, dlNumber, password } = req.body;
+    if (!name || !phone || !dlNumber || !password)
+      return res.status(400).json({ message: "name, phone, dlNumber, password are required" });
 
-    const exists = await Driver.findOne({ phone });
+    const trimmedName = name.trim();
+    if (trimmedName.length < 2 || !/^[a-zA-Z\s]+$/.test(trimmedName)) {
+      return res.status(400).json({ message: "Name must be at least 2 characters and contain only letters" });
+    }
+
+    const trimmedPhone = phone.trim();
+    if (!/^[6-9]\d{9}$/.test(trimmedPhone)) {
+      return res.status(400).json({ message: "Phone number must be a valid 10-digit mobile number" });
+    }
+
+    const cleanDL = dlNumber.replace(/[-\s]/g, "").toUpperCase();
+    if (!/^[A-Z]{2}\d{13}$/.test(cleanDL)) {
+      return res.status(400).json({ message: "Driving License number must be a valid Indian DL format (e.g. PB1020150123456)" });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({ message: "Password must be at least 6 characters" });
+    }
+
+    const exists = await Driver.findOne({ phone: trimmedPhone });
     if (exists) return res.status(409).json({ message: "Phone already registered" });
 
+    const dlExists = await Driver.findOne({ dlNumber: cleanDL });
+    if (dlExists) return res.status(409).json({ message: "Driving License number already registered" });
+
     const hash = await bcrypt.hash(password, 10);
-    const driver = await Driver.create({ name, phone, password: hash });
+    const driver = await Driver.create({
+      name: trimmedName,
+      phone: trimmedPhone,
+      dlNumber: cleanDL,
+      password: hash,
+    });
 
     res.status(201).json({
       token: sign(driver._id),
-      driver: { id: driver._id, name: driver.name, phone: driver.phone },
+      driver: { id: driver._id, name: driver.name, phone: driver.phone, dlNumber: driver.dlNumber },
     });
   } catch (e) {
     res.status(500).json({ message: e.message });
@@ -30,7 +57,15 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { phone, password } = req.body;
-    const driver = await Driver.findOne({ phone });
+    if (!phone || !password)
+      return res.status(400).json({ message: "Phone and password are required" });
+
+    const trimmedPhone = phone.trim();
+    if (!/^[6-9]\d{9}$/.test(trimmedPhone)) {
+      return res.status(400).json({ message: "Phone number must be a valid 10-digit mobile number" });
+    }
+
+    const driver = await Driver.findOne({ phone: trimmedPhone });
     if (!driver) return res.status(401).json({ message: "Invalid credentials" });
 
     const ok = await bcrypt.compare(password, driver.password);
@@ -42,6 +77,7 @@ exports.login = async (req, res) => {
         id: driver._id,
         name: driver.name,
         phone: driver.phone,
+        dlNumber: driver.dlNumber,
         assignedBusId: driver.assignedBusId,
       },
     });

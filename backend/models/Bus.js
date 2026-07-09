@@ -16,9 +16,15 @@ const busSchema = new mongoose.Schema(
     routeId: { type: mongoose.Schema.Types.ObjectId, ref: "Route", required: true },
     status: { type: String, enum: ["active", "offline"], default: "offline" },
     tripStarted: { type: Boolean, default: false },
+    capacity: { type: Number, default: 40 },
+    occupancy: { type: Number, default: 0 },
+    isFull: { type: Boolean, default: false },
+    acceptingRequests: { type: Boolean, default: true },
     currentLocation: {
       latitude: { type: Number, default: null },
       longitude: { type: Number, default: null },
+      heading: { type: Number, default: null }, // compass bearing 0-360
+      speed: { type: Number, default: null },
       lastUpdated: { type: Date, default: null },
     },
   },

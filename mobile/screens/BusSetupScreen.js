@@ -33,12 +33,26 @@ export default function BusSetupScreen({ navigation }) {
   }, []);
 
   const onSave = async () => {
-    if (!busNumber || !busBrand || !routeId) return Alert.alert("Fill all fields");
+    if (!busNumber || !busBrand || !routeId) {
+      return Alert.alert("Validation Error", "All fields are required");
+    }
+
+    const cleanBusNumber = busNumber.replace(/[-\s]/g, "").toUpperCase();
+    if (!/^[A-Z]{2}\d{2}[A-Z]{1,2}\d{4}$/.test(cleanBusNumber)) {
+      return Alert.alert(
+        "Validation Error",
+        "Please enter a valid Bus registration number (e.g. PB10AB1234)"
+      );
+    }
+
     const brand = BRANDS.find((b) => b.value === busBrand);
     setBusy(true);
     try {
       const bus = await registerBus({
-        busNumber, busBrand, busType: brand.type, routeId,
+        busNumber: cleanBusNumber,
+        busBrand,
+        busType: brand.type,
+        routeId,
       });
       Alert.alert("Saved", "Bus details updated successfully");
       navigation.replace("Trip", { busId: bus._id });

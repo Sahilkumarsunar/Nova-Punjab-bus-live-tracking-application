@@ -7,15 +7,49 @@ import s, { COLORS } from "../components/styles";
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [dlNumber, setDlNumber] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
   const [busy, setBusy] = useState(false);
 
   const onSubmit = async () => {
-    if (!name || !phone || !password) return Alert.alert("Fill all fields");
+    if (!name || !phone || !dlNumber || !password) {
+      return Alert.alert("Validation Error", "All fields are required");
+    }
+
+    const trimmedName = name.trim();
+    if (trimmedName.length < 2) {
+      return Alert.alert("Validation Error", "Name must be at least 2 characters");
+    }
+    if (!/^[a-zA-Z\s]+$/.test(trimmedName)) {
+      return Alert.alert("Validation Error", "Name must contain only letters and spaces");
+    }
+
+    const trimmedPhone = phone.trim();
+    if (!/^[6-9]\d{9}$/.test(trimmedPhone)) {
+      return Alert.alert("Validation Error", "Phone number must be a valid 10-digit mobile number");
+    }
+
+    const cleanDL = dlNumber.replace(/[-\s]/g, "").toUpperCase();
+    if (!/^[A-Z]{2}\d{13}$/.test(cleanDL)) {
+      return Alert.alert(
+        "Validation Error",
+        "Driving License must be a valid Indian DL (e.g. PB1020150123456)"
+      );
+    }
+
+    if (password.length < 6) {
+      return Alert.alert("Validation Error", "Password must be at least 6 characters");
+    }
+
     setBusy(true);
     try {
-      const { token, driver } = await register({ name, phone, password });
+      const { token, driver } = await register({
+        name: trimmedName,
+        phone: trimmedPhone,
+        dlNumber: cleanDL,
+        password,
+      });
       await AsyncStorage.setItem("token", token);
       await AsyncStorage.setItem("driver", JSON.stringify(driver));
       navigation.replace("Dashboard");
@@ -49,6 +83,16 @@ export default function RegisterScreen({ navigation }) {
           keyboardType="phone-pad"
           placeholderTextColor={COLORS.inkFaint}
           placeholder="Enter your phone"
+        />
+
+        <Text style={s.label}>Driving License (DL) Number</Text>
+        <TextInput
+          style={s.input}
+          value={dlNumber}
+          onChangeText={setDlNumber}
+          autoCapitalize="characters"
+          placeholderTextColor={COLORS.inkFaint}
+          placeholder="e.g. PB1020150123456"
         />
 
         <Text style={s.label}>Password</Text>

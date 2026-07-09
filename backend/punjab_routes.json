@@ -1,0 +1,3167 @@
+[
+  {
+    "routeName": "Abohar → Firozpur",
+    "source": "Abohar",
+    "destination": "Firozpur",
+    "stops": [
+      "Rajpura",
+      "Sunam"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Abohar → Kapurthala",
+    "source": "Abohar",
+    "destination": "Kapurthala",
+    "stops": [
+      "Jagraon"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Abohar → Kot Kapura",
+    "source": "Abohar",
+    "destination": "Kot Kapura",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Abohar → Nakodar",
+    "source": "Abohar",
+    "destination": "Nakodar",
+    "stops": [
+      "Muktsar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Amritsar → Batala",
+    "source": "Amritsar",
+    "destination": "Batala",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Amritsar → Firozpur",
+    "source": "Amritsar",
+    "destination": "Firozpur",
+    "stops": [
+      "Sunam",
+      "Muktsar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Amritsar → Nawanshahr",
+    "source": "Amritsar",
+    "destination": "Nawanshahr",
+    "stops": [
+      "Dhuri"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Amritsar → Phillaur",
+    "source": "Amritsar",
+    "destination": "Phillaur",
+    "stops": [
+      "Dhuri",
+      "Sangrur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Amritsar → Sunam",
+    "source": "Amritsar",
+    "destination": "Sunam",
+    "stops": [
+      "Firozpur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Barnala → Amritsar",
+    "source": "Barnala",
+    "destination": "Amritsar",
+    "stops": [
+      "Batala",
+      "Bathinda"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Barnala → Dasuya",
+    "source": "Barnala",
+    "destination": "Dasuya",
+    "stops": [
+      "Ludhiana",
+      "Abohar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Barnala → Fazilka",
+    "source": "Barnala",
+    "destination": "Fazilka",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Barnala → Hoshiarpur",
+    "source": "Barnala",
+    "destination": "Hoshiarpur",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Barnala → Jalandhar",
+    "source": "Barnala",
+    "destination": "Jalandhar",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Barnala → Rupnagar",
+    "source": "Barnala",
+    "destination": "Rupnagar",
+    "stops": [
+      "Moga"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Barnala → Sirhind",
+    "source": "Barnala",
+    "destination": "Sirhind",
+    "stops": [
+      "Pathankot",
+      "Sunam"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Batala → Gurdaspur",
+    "source": "Batala",
+    "destination": "Gurdaspur",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Batala → Mohali",
+    "source": "Batala",
+    "destination": "Mohali",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Batala → Sirhind",
+    "source": "Batala",
+    "destination": "Sirhind",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Bathinda → Amritsar",
+    "source": "Bathinda",
+    "destination": "Amritsar",
+    "stops": [
+      "Ludhiana",
+      "Samana"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Bathinda → Dasuya",
+    "source": "Bathinda",
+    "destination": "Dasuya",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Bathinda → Fazilka",
+    "source": "Bathinda",
+    "destination": "Fazilka",
+    "stops": [
+      "Kot Kapura"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Bathinda → Khanna",
+    "source": "Bathinda",
+    "destination": "Khanna",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Bathinda → Mohali",
+    "source": "Bathinda",
+    "destination": "Mohali",
+    "stops": [
+      "Sirhind",
+      "Amritsar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Bathinda → Rupnagar",
+    "source": "Bathinda",
+    "destination": "Rupnagar",
+    "stops": [
+      "Dhuri",
+      "Mohali"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Chandigarh → Amritsar",
+    "source": "Chandigarh",
+    "destination": "Amritsar",
+    "stops": [
+      "Mohali",
+      "Rupnagar",
+      "Nawanshahr",
+      "Phagwara",
+      "Jalandhar",
+      "Beas"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Chandigarh → Faridkot",
+    "source": "Chandigarh",
+    "destination": "Faridkot",
+    "stops": [
+      "Malerkotla",
+      "Tarn Taran"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Chandigarh → Firozpur",
+    "source": "Chandigarh",
+    "destination": "Firozpur",
+    "stops": [
+      "Barnala"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Chandigarh → Hoshiarpur",
+    "source": "Chandigarh",
+    "destination": "Hoshiarpur",
+    "stops": [
+      "Rupnagar",
+      "Balachaur",
+      "Garhshankar",
+      "Mahilpur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Chandigarh → Jagraon",
+    "source": "Chandigarh",
+    "destination": "Jagraon",
+    "stops": [
+      "Malerkotla"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Chandigarh → Muktsar",
+    "source": "Chandigarh",
+    "destination": "Muktsar",
+    "stops": [
+      "Tarn Taran",
+      "Moga"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Chandigarh → Rajpura",
+    "source": "Chandigarh",
+    "destination": "Rajpura",
+    "stops": [
+      "Kapurthala"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Dasuya → Chandigarh",
+    "source": "Dasuya",
+    "destination": "Chandigarh",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Dasuya → Jagraon",
+    "source": "Dasuya",
+    "destination": "Jagraon",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Dasuya → Patti",
+    "source": "Dasuya",
+    "destination": "Patti",
+    "stops": [
+      "Zirakpur",
+      "Sangrur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Dasuya → Phagwara",
+    "source": "Dasuya",
+    "destination": "Phagwara",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Dasuya → Sirhind",
+    "source": "Dasuya",
+    "destination": "Sirhind",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Dhuri → Chandigarh",
+    "source": "Dhuri",
+    "destination": "Chandigarh",
+    "stops": [
+      "Pathankot"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Dhuri → Kot Kapura",
+    "source": "Dhuri",
+    "destination": "Kot Kapura",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Dhuri → Sirhind",
+    "source": "Dhuri",
+    "destination": "Sirhind",
+    "stops": [
+      "Fazilka",
+      "Samana"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Faridkot → Jagraon",
+    "source": "Faridkot",
+    "destination": "Jagraon",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Faridkot → Nawanshahr",
+    "source": "Faridkot",
+    "destination": "Nawanshahr",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Faridkot → Pathankot",
+    "source": "Faridkot",
+    "destination": "Pathankot",
+    "stops": [
+      "Sirhind"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Faridkot → Samana",
+    "source": "Faridkot",
+    "destination": "Samana",
+    "stops": [
+      "Pathankot"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Faridkot → Zirakpur",
+    "source": "Faridkot",
+    "destination": "Zirakpur",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Fazilka → Barnala",
+    "source": "Fazilka",
+    "destination": "Barnala",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Fazilka → Chandigarh",
+    "source": "Fazilka",
+    "destination": "Chandigarh",
+    "stops": [
+      "Mansa",
+      "Rupnagar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Fazilka → Kot Kapura",
+    "source": "Fazilka",
+    "destination": "Kot Kapura",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Fazilka → Nakodar",
+    "source": "Fazilka",
+    "destination": "Nakodar",
+    "stops": [
+      "Sunam"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Fazilka → Patti",
+    "source": "Fazilka",
+    "destination": "Patti",
+    "stops": [
+      "Tarn Taran"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Fazilka → Sangrur",
+    "source": "Fazilka",
+    "destination": "Sangrur",
+    "stops": [
+      "Patti",
+      "Dasuya"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Firozpur → Barnala",
+    "source": "Firozpur",
+    "destination": "Barnala",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Firozpur → Nabha",
+    "source": "Firozpur",
+    "destination": "Nabha",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Gurdaspur → Bathinda",
+    "source": "Gurdaspur",
+    "destination": "Bathinda",
+    "stops": [
+      "Muktsar",
+      "Nawanshahr"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Gurdaspur → Nakodar",
+    "source": "Gurdaspur",
+    "destination": "Nakodar",
+    "stops": [
+      "Batala",
+      "Rajpura"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Hoshiarpur → Amritsar",
+    "source": "Hoshiarpur",
+    "destination": "Amritsar",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Hoshiarpur → Nabha",
+    "source": "Hoshiarpur",
+    "destination": "Nabha",
+    "stops": [
+      "Kharar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Hoshiarpur → Sunam",
+    "source": "Hoshiarpur",
+    "destination": "Sunam",
+    "stops": [
+      "Kapurthala"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Hoshiarpur → Zirakpur",
+    "source": "Hoshiarpur",
+    "destination": "Zirakpur",
+    "stops": [
+      "Rajpura",
+      "Muktsar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Jagraon → Firozpur",
+    "source": "Jagraon",
+    "destination": "Firozpur",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Jagraon → Pathankot",
+    "source": "Jagraon",
+    "destination": "Pathankot",
+    "stops": [
+      "Hoshiarpur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Jagraon → Sirhind",
+    "source": "Jagraon",
+    "destination": "Sirhind",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Jalandhar → Gurdaspur",
+    "source": "Jalandhar",
+    "destination": "Gurdaspur",
+    "stops": [
+      "Mohali",
+      "Kot Kapura"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Jalandhar → Malerkotla",
+    "source": "Jalandhar",
+    "destination": "Malerkotla",
+    "stops": [
+      "Phillaur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Jalandhar → Nawanshahr",
+    "source": "Jalandhar",
+    "destination": "Nawanshahr",
+    "stops": [
+      "Amritsar",
+      "Faridkot"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kapurthala → Amritsar",
+    "source": "Kapurthala",
+    "destination": "Amritsar",
+    "stops": [
+      "Patti"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kapurthala → Dhuri",
+    "source": "Kapurthala",
+    "destination": "Dhuri",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kapurthala → Faridkot",
+    "source": "Kapurthala",
+    "destination": "Faridkot",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kapurthala → Firozpur",
+    "source": "Kapurthala",
+    "destination": "Firozpur",
+    "stops": [
+      "Jagraon"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kapurthala → Rajpura",
+    "source": "Kapurthala",
+    "destination": "Rajpura",
+    "stops": [
+      "Khanna"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Khanna → Batala",
+    "source": "Khanna",
+    "destination": "Batala",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Khanna → Faridkot",
+    "source": "Khanna",
+    "destination": "Faridkot",
+    "stops": [
+      "Abohar",
+      "Jagraon"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Khanna → Kharar",
+    "source": "Khanna",
+    "destination": "Kharar",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Khanna → Ludhiana",
+    "source": "Khanna",
+    "destination": "Ludhiana",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Khanna → Moga",
+    "source": "Khanna",
+    "destination": "Moga",
+    "stops": [
+      "Ludhiana"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Khanna → Muktsar",
+    "source": "Khanna",
+    "destination": "Muktsar",
+    "stops": [
+      "Faridkot"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Khanna → Pathankot",
+    "source": "Khanna",
+    "destination": "Pathankot",
+    "stops": [
+      "Gurdaspur",
+      "Rajpura"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Khanna → Sangrur",
+    "source": "Khanna",
+    "destination": "Sangrur",
+    "stops": [
+      "Sirhind"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Khanna → Zirakpur",
+    "source": "Khanna",
+    "destination": "Zirakpur",
+    "stops": [
+      "Abohar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kharar → Kapurthala",
+    "source": "Kharar",
+    "destination": "Kapurthala",
+    "stops": [
+      "Sunam"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kharar → Mohali",
+    "source": "Kharar",
+    "destination": "Mohali",
+    "stops": [
+      "Malerkotla"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kot Kapura → Batala",
+    "source": "Kot Kapura",
+    "destination": "Batala",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kot Kapura → Dhuri",
+    "source": "Kot Kapura",
+    "destination": "Dhuri",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kot Kapura → Kapurthala",
+    "source": "Kot Kapura",
+    "destination": "Kapurthala",
+    "stops": [
+      "Mansa"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kot Kapura → Malerkotla",
+    "source": "Kot Kapura",
+    "destination": "Malerkotla",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kot Kapura → Nabha",
+    "source": "Kot Kapura",
+    "destination": "Nabha",
+    "stops": [
+      "Muktsar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kot Kapura → Nakodar",
+    "source": "Kot Kapura",
+    "destination": "Nakodar",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kot Kapura → Patiala",
+    "source": "Kot Kapura",
+    "destination": "Patiala",
+    "stops": [
+      "Patti",
+      "Dasuya"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Kot Kapura → Phagwara",
+    "source": "Kot Kapura",
+    "destination": "Phagwara",
+    "stops": [
+      "Abohar",
+      "Sangrur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Ludhiana → Amritsar",
+    "source": "Ludhiana",
+    "destination": "Amritsar",
+    "stops": [
+      "Phagwara",
+      "Jalandhar",
+      "Beas"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Ludhiana → Chandigarh",
+    "source": "Ludhiana",
+    "destination": "Chandigarh",
+    "stops": [
+      "Samrala",
+      "Kharar",
+      "Mohali"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Ludhiana → Muktsar",
+    "source": "Ludhiana",
+    "destination": "Muktsar",
+    "stops": [
+      "Dasuya",
+      "Dhuri"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Ludhiana → Sirhind",
+    "source": "Ludhiana",
+    "destination": "Sirhind",
+    "stops": [
+      "Malerkotla"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Ludhiana → Tarn Taran",
+    "source": "Ludhiana",
+    "destination": "Tarn Taran",
+    "stops": [
+      "Barnala",
+      "Nawanshahr"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Malerkotla → Batala",
+    "source": "Malerkotla",
+    "destination": "Batala",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Malerkotla → Patti",
+    "source": "Malerkotla",
+    "destination": "Patti",
+    "stops": [
+      "Batala"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Malerkotla → Sangrur",
+    "source": "Malerkotla",
+    "destination": "Sangrur",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Malerkotla → Zirakpur",
+    "source": "Malerkotla",
+    "destination": "Zirakpur",
+    "stops": [
+      "Patiala",
+      "Gurdaspur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mansa → Kot Kapura",
+    "source": "Mansa",
+    "destination": "Kot Kapura",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mansa → Nawanshahr",
+    "source": "Mansa",
+    "destination": "Nawanshahr",
+    "stops": [
+      "Sangrur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mansa → Patti",
+    "source": "Mansa",
+    "destination": "Patti",
+    "stops": [
+      "Jagraon"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mansa → Phagwara",
+    "source": "Mansa",
+    "destination": "Phagwara",
+    "stops": [
+      "Batala",
+      "Moga"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mansa → Phillaur",
+    "source": "Mansa",
+    "destination": "Phillaur",
+    "stops": [
+      "Barnala",
+      "Amritsar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mansa → Sangrur",
+    "source": "Mansa",
+    "destination": "Sangrur",
+    "stops": [
+      "Muktsar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Moga → Barnala",
+    "source": "Moga",
+    "destination": "Barnala",
+    "stops": [
+      "Patiala"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Moga → Jagraon",
+    "source": "Moga",
+    "destination": "Jagraon",
+    "stops": [
+      "Dhuri",
+      "Patiala"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Moga → Khanna",
+    "source": "Moga",
+    "destination": "Khanna",
+    "stops": [
+      "Amritsar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Moga → Kharar",
+    "source": "Moga",
+    "destination": "Kharar",
+    "stops": [
+      "Dhuri",
+      "Kot Kapura"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Moga → Kot Kapura",
+    "source": "Moga",
+    "destination": "Kot Kapura",
+    "stops": [
+      "Kharar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Moga → Nabha",
+    "source": "Moga",
+    "destination": "Nabha",
+    "stops": [
+      "Sangrur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Moga → Nawanshahr",
+    "source": "Moga",
+    "destination": "Nawanshahr",
+    "stops": [
+      "Batala"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Moga → Patiala",
+    "source": "Moga",
+    "destination": "Patiala",
+    "stops": [
+      "Dhuri"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Moga → Patti",
+    "source": "Moga",
+    "destination": "Patti",
+    "stops": [
+      "Malerkotla"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Moga → Samana",
+    "source": "Moga",
+    "destination": "Samana",
+    "stops": [
+      "Nakodar",
+      "Sangrur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mohali → Abohar",
+    "source": "Mohali",
+    "destination": "Abohar",
+    "stops": [
+      "Samana"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mohali → Faridkot",
+    "source": "Mohali",
+    "destination": "Faridkot",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mohali → Kapurthala",
+    "source": "Mohali",
+    "destination": "Kapurthala",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mohali → Nawanshahr",
+    "source": "Mohali",
+    "destination": "Nawanshahr",
+    "stops": [
+      "Nabha"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mohali → Patti",
+    "source": "Mohali",
+    "destination": "Patti",
+    "stops": [
+      "Dasuya"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mohali → Phillaur",
+    "source": "Mohali",
+    "destination": "Phillaur",
+    "stops": [
+      "Sunam",
+      "Kapurthala"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Mohali → Sunam",
+    "source": "Mohali",
+    "destination": "Sunam",
+    "stops": [
+      "Patti"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Muktsar → Chandigarh",
+    "source": "Muktsar",
+    "destination": "Chandigarh",
+    "stops": [
+      "Mohali",
+      "Mansa"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Muktsar → Kharar",
+    "source": "Muktsar",
+    "destination": "Kharar",
+    "stops": [
+      "Amritsar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Muktsar → Mansa",
+    "source": "Muktsar",
+    "destination": "Mansa",
+    "stops": [
+      "Faridkot"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Muktsar → Tarn Taran",
+    "source": "Muktsar",
+    "destination": "Tarn Taran",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Nabha → Abohar",
+    "source": "Nabha",
+    "destination": "Abohar",
+    "stops": [
+      "Khanna",
+      "Nakodar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Nabha → Gurdaspur",
+    "source": "Nabha",
+    "destination": "Gurdaspur",
+    "stops": [
+      "Ludhiana",
+      "Faridkot"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Nabha → Pathankot",
+    "source": "Nabha",
+    "destination": "Pathankot",
+    "stops": [
+      "Phillaur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Nabha → Patti",
+    "source": "Nabha",
+    "destination": "Patti",
+    "stops": [
+      "Sirhind"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Nakodar → Dasuya",
+    "source": "Nakodar",
+    "destination": "Dasuya",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Nakodar → Nabha",
+    "source": "Nakodar",
+    "destination": "Nabha",
+    "stops": [
+      "Phillaur",
+      "Tarn Taran"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Nakodar → Zirakpur",
+    "source": "Nakodar",
+    "destination": "Zirakpur",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Nawanshahr → Firozpur",
+    "source": "Nawanshahr",
+    "destination": "Firozpur",
+    "stops": [
+      "Faridkot"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Nawanshahr → Pathankot",
+    "source": "Nawanshahr",
+    "destination": "Pathankot",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Nawanshahr → Patiala",
+    "source": "Nawanshahr",
+    "destination": "Patiala",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Pathankot → Dhuri",
+    "source": "Pathankot",
+    "destination": "Dhuri",
+    "stops": [
+      "Moga",
+      "Rajpura"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Pathankot → Kot Kapura",
+    "source": "Pathankot",
+    "destination": "Kot Kapura",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Pathankot → Patti",
+    "source": "Pathankot",
+    "destination": "Patti",
+    "stops": [
+      "Jalandhar",
+      "Nabha"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Pathankot → Tarn Taran",
+    "source": "Pathankot",
+    "destination": "Tarn Taran",
+    "stops": [
+      "Khanna"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Pathankot → Zirakpur",
+    "source": "Pathankot",
+    "destination": "Zirakpur",
+    "stops": [
+      "Jalandhar",
+      "Chandigarh"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Patiala → Bathinda",
+    "source": "Patiala",
+    "destination": "Bathinda",
+    "stops": [
+      "Bhawanigarh",
+      "Sangrur",
+      "Barnala",
+      "Rampura Phul"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Patiala → Dasuya",
+    "source": "Patiala",
+    "destination": "Dasuya",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Patiala → Dhuri",
+    "source": "Patiala",
+    "destination": "Dhuri",
+    "stops": [
+      "Moga",
+      "Firozpur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Patiala → Gurdaspur",
+    "source": "Patiala",
+    "destination": "Gurdaspur",
+    "stops": [
+      "Phagwara",
+      "Kapurthala"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Patiala → Patti",
+    "source": "Patiala",
+    "destination": "Patti",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Patiala → Sangrur",
+    "source": "Patiala",
+    "destination": "Sangrur",
+    "stops": [
+      "Sirhind"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Patiala → Sunam",
+    "source": "Patiala",
+    "destination": "Sunam",
+    "stops": [
+      "Chandigarh"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Patti → Fazilka",
+    "source": "Patti",
+    "destination": "Fazilka",
+    "stops": [
+      "Sirhind"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Patti → Sangrur",
+    "source": "Patti",
+    "destination": "Sangrur",
+    "stops": [
+      "Tarn Taran"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phagwara → Abohar",
+    "source": "Phagwara",
+    "destination": "Abohar",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phagwara → Amritsar",
+    "source": "Phagwara",
+    "destination": "Amritsar",
+    "stops": [
+      "Batala"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phagwara → Bathinda",
+    "source": "Phagwara",
+    "destination": "Bathinda",
+    "stops": [
+      "Patti",
+      "Zirakpur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phagwara → Fazilka",
+    "source": "Phagwara",
+    "destination": "Fazilka",
+    "stops": [
+      "Faridkot"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phagwara → Gurdaspur",
+    "source": "Phagwara",
+    "destination": "Gurdaspur",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phagwara → Hoshiarpur",
+    "source": "Phagwara",
+    "destination": "Hoshiarpur",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phagwara → Mohali",
+    "source": "Phagwara",
+    "destination": "Mohali",
+    "stops": [
+      "Hoshiarpur",
+      "Dasuya"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phagwara → Nawanshahr",
+    "source": "Phagwara",
+    "destination": "Nawanshahr",
+    "stops": [
+      "Kharar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phagwara → Rupnagar",
+    "source": "Phagwara",
+    "destination": "Rupnagar",
+    "stops": [
+      "Mansa",
+      "Abohar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phillaur → Jagraon",
+    "source": "Phillaur",
+    "destination": "Jagraon",
+    "stops": [
+      "Nakodar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phillaur → Jalandhar",
+    "source": "Phillaur",
+    "destination": "Jalandhar",
+    "stops": [
+      "Mohali",
+      "Nabha"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phillaur → Mansa",
+    "source": "Phillaur",
+    "destination": "Mansa",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Phillaur → Sunam",
+    "source": "Phillaur",
+    "destination": "Sunam",
+    "stops": [
+      "Sangrur",
+      "Fazilka"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Rajpura → Bathinda",
+    "source": "Rajpura",
+    "destination": "Bathinda",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Rajpura → Fazilka",
+    "source": "Rajpura",
+    "destination": "Fazilka",
+    "stops": [
+      "Pathankot"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Rajpura → Kharar",
+    "source": "Rajpura",
+    "destination": "Kharar",
+    "stops": [
+      "Gurdaspur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Rajpura → Kot Kapura",
+    "source": "Rajpura",
+    "destination": "Kot Kapura",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Rajpura → Muktsar",
+    "source": "Rajpura",
+    "destination": "Muktsar",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Rajpura → Nabha",
+    "source": "Rajpura",
+    "destination": "Nabha",
+    "stops": [
+      "Samana"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Rajpura → Zirakpur",
+    "source": "Rajpura",
+    "destination": "Zirakpur",
+    "stops": [
+      "Fazilka"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Rupnagar → Abohar",
+    "source": "Rupnagar",
+    "destination": "Abohar",
+    "stops": [
+      "Sangrur",
+      "Nawanshahr"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Rupnagar → Chandigarh",
+    "source": "Rupnagar",
+    "destination": "Chandigarh",
+    "stops": [
+      "Bathinda",
+      "Nakodar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Rupnagar → Ludhiana",
+    "source": "Rupnagar",
+    "destination": "Ludhiana",
+    "stops": [
+      "Batala",
+      "Mansa"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Samana → Batala",
+    "source": "Samana",
+    "destination": "Batala",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Samana → Kapurthala",
+    "source": "Samana",
+    "destination": "Kapurthala",
+    "stops": [
+      "Patiala",
+      "Abohar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Samana → Khanna",
+    "source": "Samana",
+    "destination": "Khanna",
+    "stops": [
+      "Pathankot",
+      "Rajpura"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Samana → Mohali",
+    "source": "Samana",
+    "destination": "Mohali",
+    "stops": [
+      "Sangrur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Samana → Patti",
+    "source": "Samana",
+    "destination": "Patti",
+    "stops": [
+      "Dasuya",
+      "Nakodar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Samana → Phagwara",
+    "source": "Samana",
+    "destination": "Phagwara",
+    "stops": [
+      "Patiala"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Samana → Tarn Taran",
+    "source": "Samana",
+    "destination": "Tarn Taran",
+    "stops": [
+      "Malerkotla"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Sangrur → Patiala",
+    "source": "Sangrur",
+    "destination": "Patiala",
+    "stops": [
+      "Kharar",
+      "Hoshiarpur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Sangrur → Phillaur",
+    "source": "Sangrur",
+    "destination": "Phillaur",
+    "stops": [
+      "Sunam",
+      "Mansa"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Sangrur → Rajpura",
+    "source": "Sangrur",
+    "destination": "Rajpura",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Sirhind → Chandigarh",
+    "source": "Sirhind",
+    "destination": "Chandigarh",
+    "stops": [
+      "Hoshiarpur",
+      "Malerkotla"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Sirhind → Fazilka",
+    "source": "Sirhind",
+    "destination": "Fazilka",
+    "stops": [
+      "Dasuya",
+      "Sunam"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Sirhind → Jagraon",
+    "source": "Sirhind",
+    "destination": "Jagraon",
+    "stops": [
+      "Khanna"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Sunam → Amritsar",
+    "source": "Sunam",
+    "destination": "Amritsar",
+    "stops": [
+      "Rupnagar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Sunam → Fazilka",
+    "source": "Sunam",
+    "destination": "Fazilka",
+    "stops": [
+      "Ludhiana",
+      "Zirakpur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Sunam → Kharar",
+    "source": "Sunam",
+    "destination": "Kharar",
+    "stops": [
+      "Jalandhar",
+      "Gurdaspur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Sunam → Patiala",
+    "source": "Sunam",
+    "destination": "Patiala",
+    "stops": [
+      "Fazilka",
+      "Nakodar"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Sunam → Sangrur",
+    "source": "Sunam",
+    "destination": "Sangrur",
+    "stops": [
+      "Batala"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Tarn Taran → Barnala",
+    "source": "Tarn Taran",
+    "destination": "Barnala",
+    "stops": [
+      "Jagraon",
+      "Malerkotla"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Tarn Taran → Chandigarh",
+    "source": "Tarn Taran",
+    "destination": "Chandigarh",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Tarn Taran → Nabha",
+    "source": "Tarn Taran",
+    "destination": "Nabha",
+    "stops": [
+      "Amritsar",
+      "Moga"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Tarn Taran → Nakodar",
+    "source": "Tarn Taran",
+    "destination": "Nakodar",
+    "stops": [
+      "Bathinda",
+      "Mansa"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Tarn Taran → Rupnagar",
+    "source": "Tarn Taran",
+    "destination": "Rupnagar",
+    "stops": [
+      "Mohali",
+      "Chandigarh"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Zirakpur → Abohar",
+    "source": "Zirakpur",
+    "destination": "Abohar",
+    "stops": [
+      "Dhuri",
+      "Hoshiarpur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Zirakpur → Batala",
+    "source": "Zirakpur",
+    "destination": "Batala",
+    "stops": [
+      "Phagwara"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Zirakpur → Kapurthala",
+    "source": "Zirakpur",
+    "destination": "Kapurthala",
+    "stops": [
+      "Sangrur"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Zirakpur → Kot Kapura",
+    "source": "Zirakpur",
+    "destination": "Kot Kapura",
+    "stops": [
+      "Pathankot",
+      "Ludhiana"
+    ],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  },
+  {
+    "routeName": "Zirakpur → Ludhiana",
+    "source": "Zirakpur",
+    "destination": "Ludhiana",
+    "stops": [],
+    "routeType": "intercity",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    },
+    "updatedAt": {
+      "$date": "2026-05-15T13:35:52.527Z"
+    }
+  }
+]
