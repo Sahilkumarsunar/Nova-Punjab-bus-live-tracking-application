@@ -1,7 +1,7 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const API_URL = "http://10.84.255.91:5000/api";
+export const API_URL = "https://nova-86go.onrender.com/api";
 const api = axios.create({ baseURL: API_URL });
 
 api.interceptors.request.use(async (config) => {
