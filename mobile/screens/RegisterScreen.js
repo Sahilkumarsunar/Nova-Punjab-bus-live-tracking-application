@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert, StatusBar, KeyboardAvoidingView, Platform, Image } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert, StatusBar, KeyboardAvoidingView, Platform } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { register } from "../services/api";
 import s, { COLORS } from "../components/styles";
@@ -62,10 +62,6 @@ export default function RegisterScreen({ navigation }) {
     <KeyboardAvoidingView style={[s.screen, { justifyContent: "center" }]} behavior={Platform.OS === "ios" ? "padding" : undefined}>
       <StatusBar barStyle="dark-content" backgroundColor={COLORS.bg} />
 
-      <Image
-        source={require("../assets/icon.png")}
-        style={{ width: 56, height: 56, borderRadius: 14, marginBottom: 12, alignSelf: "center" }}
-      />
       <Text style={[s.title, { textAlign: "center" }]}>Create account</Text>
       <Text style={[s.subtitle, { textAlign: "center", marginBottom: 24 }]}>Join NOVA as a bus driver</Text>
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert, StatusBar, KeyboardAvoidingView, Platform, Image } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert, StatusBar, KeyboardAvoidingView, Platform } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { login } from "../services/api";
 import s, { COLORS } from "../components/styles";
@@ -39,10 +39,13 @@ export default function LoginScreen({ navigation }) {
     <KeyboardAvoidingView style={[s.screen, { justifyContent: "center" }]} behavior={Platform.OS === "ios" ? "padding" : undefined}>
       <StatusBar barStyle="dark-content" backgroundColor={COLORS.bg} />
 
-      <Image
-        source={require("../assets/icon.png")}
-        style={{ width: 64, height: 64, borderRadius: 16, marginBottom: 16, alignSelf: "center" }}
-      />
+      <View style={{
+        width: 52, height: 52, borderRadius: 14,
+        backgroundColor: COLORS.teal, alignItems: "center",
+        justifyContent: "center", marginBottom: 16, alignSelf: "center",
+      }}>
+        <Text style={{ fontSize: 26 }}>🚌</Text>
+      </View>
       <Text style={[s.title, { textAlign: "center", fontSize: 24 }]}>NOVA</Text>
       <Text style={[s.subtitle, { textAlign: "center", marginBottom: 28 }]}>Sign in to your driver account</Text>
 
