@@ -10,8 +10,8 @@ export const getBusesByRoute = (routeId) =>
 export const getBuses = () => api.get("/buses").then((r) => r.data);
 export const getBus = (id) => api.get(`/buses/${id}`).then((r) => r.data);
 
-export const createPickupRequest = (busId, passengerId, stopName) =>
-  api.post(`/buses/${busId}/pickup-request`, { passengerId, stopName }).then((r) => r.data);
+export const createPickupRequest = (busId, passengerId, stopName, latitude, longitude) =>
+  api.post(`/buses/${busId}/pickup-request`, { passengerId, stopName, latitude, longitude }).then((r) => r.data);
 export const cancelPickupRequest = (busId, passengerId) =>
   api.post(`/buses/${busId}/pickup-request/cancel`, { passengerId }).then((r) => r.data);
 export const getActivePickupRequest = (busId, passengerId) =>

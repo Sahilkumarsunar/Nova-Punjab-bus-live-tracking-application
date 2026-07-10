@@ -372,33 +372,62 @@ export default function BusDetails() {
   useEffect(() => {
     if (!passengerPos || routeWaypoints.length === 0) return;
 
-    let minDistance = Infinity;
+    let minDistanceToRoute = Infinity;
     let closestWp = null;
+    let minStopDistance = Infinity;
 
+    // Find the closest stop to associate with the request
     for (const wp of routeWaypoints) {
       const dist = haversineKm(passengerPos, wp.coord);
-      if (dist < minDistance) {
-        minDistance = dist;
+      if (dist < minStopDistance) {
+        minStopDistance = dist;
         closestWp = wp;
       }
     }
 
-    setNearestStop({ name: closestWp.name, distance: minDistance });
+    // Determine the path to measure distance against (snapped road geometry or direct waypoints)
+    const path = roadGeometry.length > 0 ? roadGeometry : routeWaypoints.map(wp => wp.coord);
 
-    // Enable button within 20 km (20.0 km)
-    if (minDistance <= 20.0) {
-      setCurrentStopName(closestWp.name);
+    if (path.length >= 2) {
+      for (let i = 0; i < path.length - 1; i++) {
+        const { projLat, projLon } = projectOnSegment(
+          passengerPos,
+          path[i],
+          path[i + 1]
+        );
+        const dist = haversineKm(passengerPos, [projLat, projLon]);
+        if (dist < minDistanceToRoute) {
+          minDistanceToRoute = dist;
+        }
+      }
+    } else {
+      minDistanceToRoute = minStopDistance;
+    }
+
+    // Convert to meters
+    const distMeters = minDistanceToRoute * 1000;
+    setNearestStop({ name: closestWp ? closestWp.name : "Route", distance: distMeters });
+
+    // Enable button if within 30 meters (0.030 km) of the route
+    if (minDistanceToRoute <= 0.030) {
+      setCurrentStopName(closestWp ? closestWp.name : "Route");
       setIsNearStop(true);
     } else {
       setCurrentStopName(null);
       setIsNearStop(false);
     }
-  }, [passengerPos, routeWaypoints]);
+  }, [passengerPos, routeWaypoints, roadGeometry]);
 
   const handleSendRequest = async () => {
-    if (!isNearStop || !currentStopName) return;
+    if (!passengerPos) return;
     try {
-      const res = await createPickupRequest(busId, passengerId, currentStopName);
+      const res = await createPickupRequest(
+        busId, 
+        passengerId, 
+        currentStopName || "Route", 
+        passengerPos[0], 
+        passengerPos[1]
+      );
       setActiveRequest(res);
     } catch (err) {
       alert(err.response?.data?.message || "Failed to send pickup request");
@@ -568,10 +597,10 @@ export default function BusDetails() {
                 ) : isNearStop ? (
                   <div style={{ background: "rgba(22, 163, 74, 0.04)", padding: "20px", borderRadius: "16px", border: "1.5px solid rgba(22, 163, 74, 0.15)" }}>
                     <div style={{ color: "#16a34a", fontWeight: 800, fontSize: "18px", display: "flex", alignItems: "center", gap: "6px", marginBottom: "8px" }}>
-                      Reached Stop: {currentStopName}!
+                      You are on the Route!
                     </div>
                     <p style={{ fontSize: "14px", color: "var(--ink-secondary)", margin: "0 0 16px 0", lineHeight: "1.4" }}>
-                      You are within the allowed 20 km radius of <strong>{currentStopName}</strong> stop (distance: <strong>{(nearestStop.distance).toFixed(2)} km</strong>).
+                      You are within the allowed 30 meters of the bus route (distance: <strong>{(nearestStop.distance).toFixed(1)} meters</strong>).
                     </p>
                     <button
                       onClick={handleSendRequest}
@@ -584,14 +613,18 @@ export default function BusDetails() {
                 ) : (
                   <div style={{ background: "rgba(107, 114, 128, 0.04)", padding: "20px", borderRadius: "16px", border: "1.5px solid rgba(107, 114, 128, 0.1)" }}>
                     <div style={{ fontWeight: 800, fontSize: "16px", color: "var(--ink)", marginBottom: "6px", display: "flex", alignItems: "center", gap: "6px" }}>
-                      Navigate to Pickup Stop
+                      Navigate to the Bus Route
                     </div>
                     <p style={{ fontSize: "13.5px", color: "var(--ink-muted)", margin: "0 0 12px 0", lineHeight: "1.4" }}>
-                      You must be within 20 km of a valid bus stop on this route to request a pickup.
+                      You must be within 30 meters of the bus route to request a pickup.
                     </p>
                     {nearestStop && (
                       <div style={{ fontSize: "13.5px", color: "var(--ink-secondary)", fontWeight: 600 }}>
-                        Nearest stop: <strong style={{ color: "var(--violet)" }}>{nearestStop.name}</strong> (<strong>{(nearestStop.distance).toFixed(2)} km</strong> away)
+                        Current distance to route: <strong style={{ color: "var(--coral)" }}>
+                          {nearestStop.distance >= 1000 
+                            ? `${(nearestStop.distance / 1000).toFixed(2)} km` 
+                            : `${nearestStop.distance.toFixed(0)} meters`}
+                        </strong>
                       </div>
                     )}
                   </div>

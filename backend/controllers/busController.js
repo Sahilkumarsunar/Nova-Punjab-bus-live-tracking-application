@@ -226,9 +226,13 @@ exports.myBus = async (req, res) => {
 
 exports.createPickupRequest = async (req, res) => {
   try {
-    const { passengerId, stopName } = req.body;
-    if (!passengerId || !stopName) {
-      return res.status(400).json({ message: "passengerId and stopName are required" });
+    const { passengerId, stopName, latitude, longitude } = req.body;
+    if (!passengerId) {
+      return res.status(400).json({ message: "passengerId is required" });
+    }
+
+    if (latitude === undefined || longitude === undefined) {
+      return res.status(400).json({ message: "latitude and longitude are required to verify your location along the route" });
     }
 
     const bus = await Bus.findById(req.params.id);
@@ -241,10 +245,56 @@ exports.createPickupRequest = async (req, res) => {
     const route = await Route.findById(bus.routeId);
     if (!route) return res.status(404).json({ message: "Route not found for this bus" });
 
-    const allStops = [route.source, ...(route.stops || []), route.destination];
-    if (!allStops.includes(stopName)) {
-      return res.status(400).json({ message: "The selected stop is not on this bus's route" });
+    // Build the list of waypoints along the route
+    const waypoints = [];
+    const srcCoord = CITY_COORDS[route.source];
+    if (srcCoord) waypoints.push({ name: route.source, coord: srcCoord });
+    if (route.stops) {
+      for (const stop of route.stops) {
+        const coord = CITY_COORDS[stop];
+        if (coord) waypoints.push({ name: stop, coord });
+      }
     }
+    const dstCoord = CITY_COORDS[route.destination];
+    if (dstCoord) waypoints.push({ name: route.destination, coord: dstCoord });
+
+    if (waypoints.length < 2) {
+      return res.status(400).json({ message: "Route path is invalid" });
+    }
+
+    const passengerPos = [Number(latitude), Number(longitude)];
+    let onRoute = false;
+    let minWpDist = Infinity;
+    let closestWp = null;
+
+    // Verify passenger is within 30 meters (0.030 km) of any segment of the route
+    for (let i = 0; i < waypoints.length - 1; i++) {
+      const { projLat, projLon } = projectOnSegment(
+        passengerPos,
+        waypoints[i].coord,
+        waypoints[i + 1].coord
+      );
+      const dist = haversineKm(passengerPos, [projLat, projLon]);
+      if (dist <= 0.030) {
+        onRoute = true;
+      }
+    }
+
+    // Find the closest waypoint to associate the request with
+    for (const wp of waypoints) {
+      const dist = haversineKm(passengerPos, wp.coord);
+      if (dist < minWpDist) {
+        minWpDist = dist;
+        closestWp = wp;
+      }
+    }
+
+    if (!onRoute) {
+      return res.status(400).json({ message: "You must be within 30 meters of the bus route to request a pickup" });
+    }
+
+    // Snap the stopName to the closest stop on route if not provided or to ensure it matches the driver app list
+    const finalStopName = stopName || (closestWp ? closestWp.name : route.source);
 
     // Check duplicate active request
     const existing = await PickupRequest.findOne({
@@ -260,7 +310,9 @@ exports.createPickupRequest = async (req, res) => {
       passengerId,
       busId: bus._id,
       routeId: bus.routeId,
-      stopName,
+      stopName: finalStopName,
+      latitude: Number(latitude),
+      longitude: Number(longitude),
       status: "sent"
     });
 

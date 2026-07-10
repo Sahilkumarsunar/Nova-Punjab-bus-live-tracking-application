@@ -5,8 +5,10 @@ import {
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { io } from "socket.io-client";
+import { WebView } from "react-native-webview";
 import * as tripService from "../services/tripService";
 import s, { COLORS } from "../components/styles";
+import { CITY_COORDS } from "../services/coords";
 import {
   API_URL,
   getMyBus,
@@ -110,12 +112,13 @@ export default function TripScreen({ route, navigation }) {
     });
 
     socket.on("busLocationUpdate", (updatedBus) => {
-      if (updatedBus._id === busId) {
-        setIsFull(updatedBus.isFull || false);
-        setAcceptingRequests(updatedBus.acceptingRequests !== false);
-        setOccupancy(updatedBus.occupancy || 0);
-      }
-    });
+       if (updatedBus._id === busId) {
+         setBus(updatedBus);
+         setIsFull(updatedBus.isFull || false);
+         setAcceptingRequests(updatedBus.acceptingRequests !== false);
+         setOccupancy(updatedBus.occupancy || 0);
+       }
+     });
 
     return () => {
       socket.disconnect();
@@ -148,20 +151,181 @@ export default function TripScreen({ route, navigation }) {
     }
   };
 
-  // Route stops extraction
-  const routeWaypoints = useMemo(() => {
+  // Route stops extraction with coordinates
+  const routeWaypointsCoords = useMemo(() => {
     if (!bus || !bus.routeId) return [];
     const r = bus.routeId;
     const points = [];
-    points.push(r.source);
+    
+    const srcCoord = CITY_COORDS[r.source];
+    if (srcCoord) points.push({ name: r.source, coord: srcCoord, type: "endpoint" });
+
     if (r.stops) {
-      for (const s of r.stops) {
-        points.push(s);
+      for (const stop of r.stops) {
+        const coord = CITY_COORDS[stop];
+        if (coord) points.push({ name: stop, coord, type: "stop" });
       }
     }
-    points.push(r.destination);
+
+    const dstCoord = CITY_COORDS[r.destination];
+    if (dstCoord) points.push({ name: r.destination, coord: dstCoord, type: "endpoint" });
+
     return points;
   }, [bus]);
+
+  // Route stops extraction (names only)
+  const routeWaypoints = useMemo(() => {
+    return routeWaypointsCoords.map(wp => wp.name);
+  }, [routeWaypointsCoords]);
+
+  // Generate Map HTML containing Leaflet
+  const mapHtml = useMemo(() => {
+    const waypointsData = routeWaypointsCoords.map(wp => ({
+      name: wp.name,
+      coord: wp.coord,
+      type: wp.type
+    }));
+
+    const busPosData = bus?.currentLocation?.latitude && bus?.currentLocation?.longitude
+      ? [bus.currentLocation.latitude, bus.currentLocation.longitude]
+      : null;
+
+    const passengerRequestsData = requests
+      .filter(r => ["sent", "accepted", "approaching", "arrived"].includes(r.status))
+      .map(r => ({
+        latitude: r.latitude,
+        longitude: r.longitude,
+        status: r.status,
+        stopName: r.stopName,
+        passengerId: r.passengerId
+      }));
+
+    return `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <style>
+          body, html, #map { margin: 0; padding: 0; width: 100%; height: 100%; background: #ffffff; }
+          .stop-icon {
+            width: 12px; height: 12px; border-radius: 50%;
+            background: #d97706; border: 2.5px solid #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+          }
+          .endpoint-icon {
+            width: 16px; height: 16px; border-radius: 50%;
+            background: #0d9488; border: 3px solid #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+          }
+          .bus-icon {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: #7B2CBF; border: 3px solid #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+          }
+          .passenger-icon {
+            width: 24px; height: 24px; border-radius: 50%;
+            background: #ef4444; border: 2.5px solid #fff;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px;
+            color: white;
+          }
+        </style>
+      </head>
+      <body>
+        <div id="map"></div>
+        <script>
+          var map = L.map('map').setView([31.1471, 75.3412], 8);
+          L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; CARTO'
+          }).addTo(map);
+
+          var routePoints = ${JSON.stringify(waypointsData)};
+          var busPos = ${JSON.stringify(busPosData)};
+          var passengers = ${JSON.stringify(passengerRequestsData)};
+
+          // Draw route path
+          if (routePoints.length > 1) {
+            var coords = routePoints.map(function(wp) { return wp.coord; });
+            L.polyline(coords, {
+              color: '#7b2cbf',
+              weight: 5,
+              opacity: 0.75
+            }).addTo(map);
+
+            // Add route stops
+            routePoints.forEach(function(wp) {
+              var iconHtml = wp.type === 'endpoint' 
+                ? '<div class="endpoint-icon"></div>' 
+                : '<div class="stop-icon"></div>';
+              
+              var icon = L.divIcon({
+                html: iconHtml,
+                className: '',
+                iconSize: wp.type === 'endpoint' ? [16, 16] : [12, 12],
+                iconAnchor: wp.type === 'endpoint' ? [8, 8] : [6, 6]
+              });
+
+              L.marker(wp.coord, { icon: icon })
+                .bindPopup('<b>' + wp.name + '</b><br/>' + (wp.type === 'endpoint' ? 'Endpoint' : 'Bus Stop'))
+                .addTo(map);
+            });
+          }
+
+          // Add Bus location if available
+          if (busPos) {
+            var busIcon = L.divIcon({
+              html: '<div class="bus-icon">🚌</div>',
+              className: '',
+              iconSize: [32, 32],
+              iconAnchor: [16, 16]
+            });
+            L.marker(busPos, { icon: busIcon })
+              .bindPopup('<b>Your Bus Location</b>')
+              .addTo(map);
+          }
+
+          // Add Passenger locations
+          passengers.forEach(function(p) {
+            if (p.latitude && p.longitude) {
+              var passIcon = L.divIcon({
+                html: '<div class="passenger-icon">🧍</div>',
+                className: '',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+              });
+              L.marker([p.latitude, p.longitude], { icon: passIcon })
+                .bindPopup('<b>Passenger Pickup Request</b><br/>ID: #' + p.passengerId.slice(-4).toUpperCase() + '<br/>Status: ' + p.status + '<br/>Stop: ' + p.stopName)
+                .addTo(map);
+            }
+          });
+
+          // Fit bounds
+          var allLatLngs = [];
+          if (routePoints.length > 0) {
+            routePoints.forEach(function(wp) { allLatLngs.push(wp.coord); });
+          }
+          if (busPos) {
+            allLatLngs.push(busPos);
+          }
+          passengers.forEach(function(p) {
+            if (p.latitude && p.longitude) {
+              allLatLngs.push([p.latitude, p.longitude]);
+            }
+          });
+
+          if (allLatLngs.length > 0) {
+            map.fitBounds(allLatLngs, { padding: [30, 30] });
+          }
+        </script>
+      </body>
+      </html>
+    `;
+  }, [routeWaypointsCoords, bus, requests]);
 
   // Request grouping by stop
   const requestsByStop = useMemo(() => {
@@ -292,6 +456,20 @@ export default function TripScreen({ route, navigation }) {
               {isFull ? "BUS IS FULL (REQUESTS PAUSED)" : "MARK BUS AS FULL"}
             </Text>
           </TouchableOpacity>
+        </View>
+      )}
+
+      {/* ── Live Route & Request Map ── */}
+      {trip.running && (
+        <View style={[s.card, { height: 350, overflow: "hidden", padding: 0 }]}>
+          <Text style={[s.cardHeader, { padding: 16, marginBottom: 0, paddingBottom: 8 }]}>Live Route & Pickup Map</Text>
+          <WebView
+            originWhitelist={['*']}
+            source={{ html: mapHtml }}
+            style={{ flex: 1 }}
+            domStorageEnabled={true}
+            javaScriptEnabled={true}
+          />
         </View>
       )}
 
