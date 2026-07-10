@@ -77,12 +77,17 @@ function makeBusIcon(selected, availabilityStatus) {
   });
 }
 
-// Fly map to selected bus or user location
-function MapFocus({ target }) {
+// Fly map to selected bus or user location only when it is initially selected
+function MapFocus({ target, targetId }) {
   const map = useMap();
+  const lastTargetIdRef = useRef(null);
+
   useEffect(() => {
-    if (target) map.flyTo(target, 14, { duration: 0.8 });
-  }, [target, map]);
+    if (target && targetId !== lastTargetIdRef.current) {
+      map.flyTo(target, 14, { duration: 0.8 });
+      lastTargetIdRef.current = targetId;
+    }
+  }, [target, targetId, map]);
   return null;
 }
 
@@ -385,7 +390,7 @@ export default function NearbyBuses() {
           }}>
             <MapContainer center={mapCenter} zoom={13} style={{ height: "100%", width: "100%" }}>
               <MapResizer />
-              <MapFocus target={mapFocusTarget} />
+              <MapFocus target={mapFocusTarget} targetId={selectedBusId || (userLocation ? 'user' : null)} />
 
               <TileLayer
                 attribution='&copy; <a href="https://carto.com/">CARTO</a>'

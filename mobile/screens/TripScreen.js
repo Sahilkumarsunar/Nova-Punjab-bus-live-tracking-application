@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import {
   View, Text, TouchableOpacity, Alert,
   ScrollView, StatusBar, BackHandler,
@@ -28,6 +28,52 @@ export default function TripScreen({ route, navigation }) {
   const [occupancy, setOccupancy] = useState(0);
   const [requests, setRequests] = useState([]);
   const [selectedStopName, setSelectedStopName] = useState(null);
+
+  const webviewRef = useRef(null);
+  const [mapReady, setMapReady] = useState(false);
+
+  // Send data updates to WebView when ready
+  useEffect(() => {
+    if (mapReady && webviewRef.current && trip.running) {
+      const busPosData = bus?.currentLocation?.latitude && bus?.currentLocation?.longitude
+        ? [bus.currentLocation.latitude, bus.currentLocation.longitude]
+        : null;
+
+      const passengerRequestsData = requests
+        .filter(r => ["sent", "accepted", "approaching", "arrived"].includes(r.status))
+        .map(r => ({
+          latitude: r.latitude,
+          longitude: r.longitude,
+          status: r.status,
+          stopName: r.stopName,
+          passengerId: r.passengerId
+        }));
+
+      webviewRef.current.postMessage(JSON.stringify({
+        type: 'UPDATE_DATA',
+        busPos: busPosData,
+        passengers: passengerRequestsData
+      }));
+    }
+  }, [mapReady, bus, requests, trip.running]);
+
+  // Reset mapReady when trip stops running
+  useEffect(() => {
+    if (!trip.running) {
+      setMapReady(false);
+    }
+  }, [trip.running]);
+
+  const handleWebViewMessage = (event) => {
+    try {
+      const data = JSON.parse(event.nativeEvent.data);
+      if (data.type === 'READY') {
+        setMapReady(true);
+      }
+    } catch (err) {
+      console.warn("[NOVA] WebView message parsing failed", err);
+    }
+  };
 
   // Subscribe to global trip state
   useEffect(() => {
@@ -151,7 +197,7 @@ export default function TripScreen({ route, navigation }) {
     }
   };
 
-  // Route stops extraction with coordinates
+  // Route stops extraction with coordinates (stable on bus route)
   const routeWaypointsCoords = useMemo(() => {
     if (!bus || !bus.routeId) return [];
     const r = bus.routeId;
@@ -171,34 +217,21 @@ export default function TripScreen({ route, navigation }) {
     if (dstCoord) points.push({ name: r.destination, coord: dstCoord, type: "endpoint" });
 
     return points;
-  }, [bus]);
+  }, [bus?.routeId?._id]);
 
   // Route stops extraction (names only)
   const routeWaypoints = useMemo(() => {
     return routeWaypointsCoords.map(wp => wp.name);
   }, [routeWaypointsCoords]);
 
-  // Generate Map HTML containing Leaflet
+  // Generate Map HTML containing Leaflet (reloads only if route changes)
+  const routeIdStr = bus?.routeId?._id || "";
   const mapHtml = useMemo(() => {
     const waypointsData = routeWaypointsCoords.map(wp => ({
       name: wp.name,
       coord: wp.coord,
       type: wp.type
     }));
-
-    const busPosData = bus?.currentLocation?.latitude && bus?.currentLocation?.longitude
-      ? [bus.currentLocation.latitude, bus.currentLocation.longitude]
-      : null;
-
-    const passengerRequestsData = requests
-      .filter(r => ["sent", "accepted", "approaching", "arrived"].includes(r.status))
-      .map(r => ({
-        latitude: r.latitude,
-        longitude: r.longitude,
-        status: r.status,
-        stopName: r.stopName,
-        passengerId: r.passengerId
-      }));
 
     return `
       <!DOCTYPE html>
@@ -228,11 +261,10 @@ export default function TripScreen({ route, navigation }) {
           }
           .passenger-icon {
             width: 24px; height: 24px; border-radius: 50%;
-            background: #ef4444; border: 2.5px solid #fff;
-            box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+            background: #f97316; border: 2.5px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             display: flex; align-items: center; justify-content: center;
-            font-size: 12px;
-            color: white;
+            font-size: 13px;
           }
         </style>
       </head>
@@ -245,16 +277,14 @@ export default function TripScreen({ route, navigation }) {
           }).addTo(map);
 
           var routePoints = ${JSON.stringify(waypointsData)};
-          var busPos = ${JSON.stringify(busPosData)};
-          var passengers = ${JSON.stringify(passengerRequestsData)};
 
-          // Draw route path
+          // Draw route path (light color)
           if (routePoints.length > 1) {
             var coords = routePoints.map(function(wp) { return wp.coord; });
             L.polyline(coords, {
-              color: '#7b2cbf',
+              color: '#cbd5e1', // Light slate gray
               weight: 5,
-              opacity: 0.75
+              opacity: 0.8
             }).addTo(map);
 
             // Add route stops
@@ -276,56 +306,103 @@ export default function TripScreen({ route, navigation }) {
             });
           }
 
-          // Add Bus location if available
-          if (busPos) {
-            var busIcon = L.divIcon({
-              html: '<div class="bus-icon">🚌</div>',
-              className: '',
-              iconSize: [32, 32],
-              iconAnchor: [16, 16]
+          var busMarker = null;
+          var passengerMarkers = {};
+          var hasFittedBounds = false;
+
+          function updateData(busPos, passengers) {
+            // Update Bus location
+            if (busPos) {
+              if (!busMarker) {
+                var busIcon = L.divIcon({
+                  html: '<div class="bus-icon">🚌</div>',
+                  className: '',
+                  iconSize: [32, 32],
+                  iconAnchor: [16, 16]
+                });
+                busMarker = L.marker(busPos, { icon: busIcon })
+                  .bindPopup('<b>Your Bus Location</b>')
+                  .addTo(map);
+              } else {
+                busMarker.setLatLng(busPos);
+              }
+            }
+
+            // Update Passenger requests
+            var currentIds = passengers.map(function(p) { return p.passengerId; });
+            // Remove old ones
+            for (var id in passengerMarkers) {
+              if (currentIds.indexOf(id) === -1) {
+                map.removeLayer(passengerMarkers[id]);
+                delete passengerMarkers[id];
+              }
+            }
+            // Add/update new ones
+            passengers.forEach(function(p) {
+              if (p.latitude && p.longitude) {
+                var latLng = [p.latitude, p.longitude];
+                if (!passengerMarkers[p.passengerId]) {
+                  var passIcon = L.divIcon({
+                    html: '<div class="passenger-icon">🧍</div>',
+                    className: '',
+                    iconSize: [24, 24],
+                    iconAnchor: [12, 12]
+                  });
+                  passengerMarkers[p.passengerId] = L.marker(latLng, { icon: passIcon })
+                    .bindPopup('<b>Passenger Pickup Request</b><br/>Stop: ' + p.stopName + '<br/>Status: ' + p.status)
+                    .addTo(map);
+                } else {
+                  passengerMarkers[p.passengerId].setLatLng(latLng);
+                  passengerMarkers[p.passengerId].setPopupContent('<b>Passenger Pickup Request</b><br/>Stop: ' + p.stopName + '<br/>Status: ' + p.status);
+                }
+              }
             });
-            L.marker(busPos, { icon: busIcon })
-              .bindPopup('<b>Your Bus Location</b>')
-              .addTo(map);
-          }
 
-          // Add Passenger locations
-          passengers.forEach(function(p) {
-            if (p.latitude && p.longitude) {
-              var passIcon = L.divIcon({
-                html: '<div class="passenger-icon">🧍</div>',
-                className: '',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+            // fitBounds on first valid data load
+            if (!hasFittedBounds) {
+              var allLatLngs = [];
+              if (routePoints.length > 0) {
+                routePoints.forEach(function(wp) { allLatLngs.push(wp.coord); });
+              }
+              if (busPos) {
+                allLatLngs.push(busPos);
+              }
+              passengers.forEach(function(p) {
+                if (p.latitude && p.longitude) {
+                  allLatLngs.push([p.latitude, p.longitude]);
+                }
               });
-              L.marker([p.latitude, p.longitude], { icon: passIcon })
-                .bindPopup('<b>Passenger Pickup Request</b><br/>ID: #' + p.passengerId.slice(-4).toUpperCase() + '<br/>Status: ' + p.status + '<br/>Stop: ' + p.stopName)
-                .addTo(map);
-            }
-          });
 
-          // Fit bounds
-          var allLatLngs = [];
-          if (routePoints.length > 0) {
-            routePoints.forEach(function(wp) { allLatLngs.push(wp.coord); });
-          }
-          if (busPos) {
-            allLatLngs.push(busPos);
-          }
-          passengers.forEach(function(p) {
-            if (p.latitude && p.longitude) {
-              allLatLngs.push([p.latitude, p.longitude]);
+              if (allLatLngs.length > 0) {
+                map.fitBounds(allLatLngs, { padding: [30, 30] });
+                hasFittedBounds = true;
+              }
             }
-          });
+          }
 
-          if (allLatLngs.length > 0) {
-            map.fitBounds(allLatLngs, { padding: [30, 30] });
+          function handleMessage(event) {
+            try {
+              var data = JSON.parse(event.data);
+              if (data.type === 'UPDATE_DATA') {
+                updateData(data.busPos, data.passengers);
+              }
+            } catch (err) {
+              // Log or handle error
+            }
+          }
+
+          window.addEventListener('message', handleMessage);
+          document.addEventListener('message', handleMessage); // for Android
+
+          // Let React Native know WebView is ready
+          if (window.ReactNativeWebView) {
+            window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'READY' }));
           }
         </script>
       </body>
       </html>
     `;
-  }, [routeWaypointsCoords, bus, requests]);
+  }, [routeIdStr, routeWaypointsCoords]);
 
   // Request grouping by stop
   const requestsByStop = useMemo(() => {
@@ -464,11 +541,13 @@ export default function TripScreen({ route, navigation }) {
         <View style={[s.card, { height: 350, overflow: "hidden", padding: 0 }]}>
           <Text style={[s.cardHeader, { padding: 16, marginBottom: 0, paddingBottom: 8 }]}>Live Route & Pickup Map</Text>
           <WebView
+            ref={webviewRef}
             originWhitelist={['*']}
             source={{ html: mapHtml }}
             style={{ flex: 1 }}
             domStorageEnabled={true}
             javaScriptEnabled={true}
+            onMessage={handleWebViewMessage}
           />
         </View>
       )}

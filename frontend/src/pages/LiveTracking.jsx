@@ -261,10 +261,13 @@ function calcCoveredDistance(routeCoords, busPos) {
 
 function FitBounds({ positions }) {
   const map = useMap();
+  const hasFittedRef = useRef(false);
+
   useEffect(() => {
-    if (positions.length > 1) {
+    if (positions.length > 1 && !hasFittedRef.current) {
       const bounds = L.latLngBounds(positions);
       map.fitBounds(bounds, { padding: [40, 40] });
+      hasFittedRef.current = true;
     }
   }, [positions, map]);
   return null;
