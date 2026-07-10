@@ -14,14 +14,14 @@ export default function Home() {
       <div className="hero-section">
         <div className="hero-content">
           <h1>
-            Know where your
+            Track your bus &
             <br />
-            bus is, <span className="highlight">right now</span>
+            request a <span className="highlight">smart pickup</span>
           </h1>
           <p>
-            NOVA tracks government and private buses across Punjab with
-            live GPS updates every 10 seconds. Pick your route, find
-            your bus, and stop guessing.
+            Nova combines real-time GPS tracking with a smart on-route passenger
+            pickup request system. Track active buses across Punjab, view live ETAs,
+            and signal the driver to pick you up in one tap.
           </p>
           <div className="hero-actions" style={{ flexWrap: "wrap", gap: "12px" }}>
             <Link to="/routes" className="btn">Find my bus</Link>
@@ -46,10 +46,10 @@ export default function Home() {
             </div>
           </div>
           <div className="info-chip" style={{ margin: 0 }}>
-            <div className="info-chip-icon blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+            <div className="info-chip-icon blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <div className="info-chip-text">
-              <strong>3+1</strong>
-              <span>Bus operators supported</span>
+              <strong>Smart</strong>
+              <span>On-Route Pickup Points</span>
             </div>
           </div>
         </div>
@@ -60,18 +60,18 @@ export default function Home() {
         <div className="steps-grid">
           <div className="step-card">
             <div className="step-number">1</div>
-            <h3>Pick your route</h3>
-            <p>Select where you're coming from and where you're headed. Or just search by city name.</p>
+            <h3>Find your bus</h3>
+            <p>Select your route to view active buses, check their real-time locations, and inspect current bus capacity.</p>
           </div>
           <div className="step-card">
             <div className="step-number">2</div>
-            <h3>Choose a bus</h3>
-            <p>See which buses are running on that route, their type, driver info, and current status.</p>
+            <h3>Request a pickup</h3>
+            <p>If you're near the bus's route, tap once to submit a pickup request. Nova verifies your route proximity instantly.</p>
           </div>
           <div className="step-card">
             <div className="step-number">3</div>
-            <h3>Track live</h3>
-            <p>Watch the bus move on the map in real time. See the full route with every stop marked.</p>
+            <h3>Board & travel</h3>
+            <p>The driver receives your request on their mobile dashboard, accepts it, and pulls over to pick you up.</p>
           </div>
         </div>
       </div>

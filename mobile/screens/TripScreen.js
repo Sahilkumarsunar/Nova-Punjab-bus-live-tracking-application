@@ -253,18 +253,16 @@ export default function TripScreen({ route, navigation }) {
             box-shadow: 0 1px 4px rgba(0,0,0,0.2);
           }
           .bus-icon {
-            width: 32px; height: 32px; border-radius: 50%;
-            background: #7B2CBF; border: 3px solid #fff;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+            width: 36px; height: 36px; border-radius: 50%;
+            background: #7B2CBF; border: 2.5px solid #fff;
+            box-shadow: 0 3px 10px rgba(123, 44, 191, 0.45);
             display: flex; align-items: center; justify-content: center;
-            font-size: 16px;
           }
           .passenger-icon {
-            width: 24px; height: 24px; border-radius: 50%;
+            width: 28px; height: 28px; border-radius: 50%;
             background: #f97316; border: 2.5px solid #fff;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            box-shadow: 0 3px 8px rgba(249, 115, 22, 0.45);
             display: flex; align-items: center; justify-content: center;
-            font-size: 13px;
           }
         </style>
       </head>
@@ -315,10 +313,10 @@ export default function TripScreen({ route, navigation }) {
             if (busPos) {
               if (!busMarker) {
                 var busIcon = L.divIcon({
-                  html: '<div class="bus-icon">🚌</div>',
+                  html: '<div class="bus-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff" xmlns="http://www.w3.org/2000/svg"><path d="M17 20H7v1a1 1 0 01-2 0v-1H4v-8H3V8h1V5a2 2 0 012-2h12a2 2 0 012 2v3h1v4h-1v8h-1v1a1 1 0 01-2 0v-1zM5 5v9h14V5H5zm0 11v2h4v-2H5zm10 0v2h4v-2h-4z"/></svg></div>',
                   className: '',
-                  iconSize: [32, 32],
-                  iconAnchor: [16, 16]
+                  iconSize: [36, 36],
+                  iconAnchor: [18, 18]
                 });
                 busMarker = L.marker(busPos, { icon: busIcon })
                   .bindPopup('<b>Your Bus Location</b>')
@@ -343,10 +341,10 @@ export default function TripScreen({ route, navigation }) {
                 var latLng = [p.latitude, p.longitude];
                 if (!passengerMarkers[p.passengerId]) {
                   var passIcon = L.divIcon({
-                    html: '<div class="passenger-icon">🧍</div>',
+                    html: '<div class="passenger-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>',
                     className: '',
-                    iconSize: [24, 24],
-                    iconAnchor: [12, 12]
+                    iconSize: [28, 28],
+                    iconAnchor: [14, 14]
                   });
                   passengerMarkers[p.passengerId] = L.marker(latLng, { icon: passIcon })
                     .bindPopup('<b>Passenger Pickup Request</b><br/>Stop: ' + p.stopName + '<br/>Status: ' + p.status)
