@@ -267,7 +267,7 @@ exports.createPickupRequest = async (req, res) => {
     let minWpDist = Infinity;
     let closestWp = null;
 
-    // Verify passenger is within 30 meters (0.030 km) of any segment of the route
+    // Verify passenger is within 50 km of any segment of the route (for testing purposes)
     for (let i = 0; i < waypoints.length - 1; i++) {
       const { projLat, projLon } = projectOnSegment(
         passengerPos,
@@ -275,7 +275,7 @@ exports.createPickupRequest = async (req, res) => {
         waypoints[i + 1].coord
       );
       const dist = haversineKm(passengerPos, [projLat, projLon]);
-      if (dist <= 0.030) {
+      if (dist <= 50.0) {
         onRoute = true;
       }
     }
@@ -290,7 +290,7 @@ exports.createPickupRequest = async (req, res) => {
     }
 
     if (!onRoute) {
-      return res.status(400).json({ message: "You must be within 30 meters of the bus route to request a pickup" });
+      return res.status(400).json({ message: "You must be within 50 km of the bus route to request a pickup" });
     }
 
     // Snap the stopName to the closest stop on route if not provided or to ensure it matches the driver app list

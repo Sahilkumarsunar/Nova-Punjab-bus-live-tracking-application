@@ -408,8 +408,8 @@ export default function BusDetails() {
     const distMeters = minDistanceToRoute * 1000;
     setNearestStop({ name: closestWp ? closestWp.name : "Route", distance: distMeters });
 
-    // Enable button if within 30 meters (0.030 km) of the route
-    if (minDistanceToRoute <= 0.030) {
+    // Enable button if within 50 km (50.0 km) of the route
+    if (minDistanceToRoute <= 50.0) {
       setCurrentStopName(closestWp ? closestWp.name : "Route");
       setIsNearStop(true);
     } else {
@@ -597,10 +597,10 @@ export default function BusDetails() {
                 ) : isNearStop ? (
                   <div style={{ background: "rgba(22, 163, 74, 0.04)", padding: "20px", borderRadius: "16px", border: "1.5px solid rgba(22, 163, 74, 0.15)" }}>
                     <div style={{ color: "#16a34a", fontWeight: 800, fontSize: "18px", display: "flex", alignItems: "center", gap: "6px", marginBottom: "8px" }}>
-                      You are on the Route!
+                      You are near the Route!
                     </div>
                     <p style={{ fontSize: "14px", color: "var(--ink-secondary)", margin: "0 0 16px 0", lineHeight: "1.4" }}>
-                      You are within the allowed 30 meters of the bus route (distance: <strong>{(nearestStop.distance).toFixed(1)} meters</strong>).
+                      You are within the allowed 50 km of the bus route (distance: <strong>{(nearestStop.distance / 1000).toFixed(2)} km</strong>).
                     </p>
                     <button
                       onClick={handleSendRequest}
@@ -616,14 +616,12 @@ export default function BusDetails() {
                       Navigate to the Bus Route
                     </div>
                     <p style={{ fontSize: "13.5px", color: "var(--ink-muted)", margin: "0 0 12px 0", lineHeight: "1.4" }}>
-                      You must be within 30 meters of the bus route to request a pickup.
+                      You must be within 50 km of the bus route to request a pickup.
                     </p>
                     {nearestStop && (
                       <div style={{ fontSize: "13.5px", color: "var(--ink-secondary)", fontWeight: 600 }}>
                         Current distance to route: <strong style={{ color: "var(--coral)" }}>
-                          {nearestStop.distance >= 1000 
-                            ? `${(nearestStop.distance / 1000).toFixed(2)} km` 
-                            : `${nearestStop.distance.toFixed(0)} meters`}
+                          {(nearestStop.distance / 1000).toFixed(2)} km
                         </strong>
                       </div>
                     )}
