@@ -22,9 +22,10 @@
       }
     },
     "android": {
+      "icon": "./assets/novaLogo.png",
       "adaptiveIcon": {
         "foregroundImage": "./assets/novaLogo.png",
-        "backgroundColor": "#0f172a"
+        "backgroundColor": "#FFFFFF"
       },
       "permissions": [
         "ACCESS_FINE_LOCATION",
