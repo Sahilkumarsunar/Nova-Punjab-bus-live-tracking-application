@@ -42,7 +42,17 @@ export function startSendCountPolling() {
 
 // ─── Start trip ─────────────────────────────────────────────────────────────
 export async function startTrip(busId) {
-  // Ask for background location (Expo Go supports this on Android)
+  // Force user to turn on the physical GPS toggle on Android
+  try {
+    const enabled = await Location.hasServicesEnabledAsync();
+    if (!enabled) {
+      await Location.enableNetworkProviderAsync();
+    }
+  } catch (e) {
+    throw new Error("Please turn on GPS/Location services in your phone settings to start the trip.");
+  }
+
+  // Ask for background location
   const bg = await Location.requestBackgroundPermissionsAsync();
   if (bg.status !== "granted") {
     // Fall back: at minimum need foreground
